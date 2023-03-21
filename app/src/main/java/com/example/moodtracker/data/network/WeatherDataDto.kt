@@ -13,5 +13,5 @@ data class WeatherDataDto(
     @field:Json(name = "windspeed_10m")
     val windSpeeds: List<Double>,
     @field:Json(name = "pressure_msl")
-    val pressures: List<Double>
+    val pressures: List<Double>,
 )

@@ -47,12 +47,18 @@ android {
     }
 }
 
+configurations {
+    ktlint
+}
+
 dependencies {
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation 'com.squareup.okhttp2:logging-interceptor:5.0.0-alpha.3'
+
+    ktlint "com.pinterest:ktlint:0.48.2"
 
     //ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0'
@@ -83,3 +89,23 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 }
+
+task ktlintFormat(type: JavaExec, group: "formatting")
+{
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    main = "com.pinterest.ktlint.Main"
+    args "-F", "src/**/*.kt"
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Runs ktlint."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args = [
+            "--reporter=plain",
+            "--reporter=checkstyle,output=${project.buildDir}/reports/ktlint/ktlint-checkstyle-report.xml",
+            "src/**/*.kt"    ]
+}
+
+check.dependsOn ktlint

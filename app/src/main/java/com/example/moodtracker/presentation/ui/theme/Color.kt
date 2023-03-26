@@ -1,6 +1,9 @@
-package com.example.moodtracker.ui.theme
+package com.example.moodtracker.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
+
+val DarkBlue = Color(0xFF1B3B5A)
+val DeepBlue = Color(0xFF102840)
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)

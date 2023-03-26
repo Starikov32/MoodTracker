@@ -1,5 +1,6 @@
-package com.example.moodtracker.data.network
+package com.example.moodtracker.data.network.api
 
+import com.example.moodtracker.data.network.dto.WeatherDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

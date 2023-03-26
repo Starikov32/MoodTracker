@@ -1,4 +1,4 @@
-package com.example.moodtracker.data.network
+package com.example.moodtracker.data.network.dto
 
 import com.squareup.moshi.Json
 

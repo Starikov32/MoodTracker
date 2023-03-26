@@ -1,4 +1,4 @@
-package com.example.moodtracker.ui.theme
+package com.example.moodtracker.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

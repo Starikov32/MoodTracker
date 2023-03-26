@@ -69,7 +69,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1'
 
     // Dagger hilt
-    def hilt_jetpack = "2.45"
     implementation "com.google.dagger:hilt-android:$hilt_jetpack"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_jetpack"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
@@ -115,3 +114,7 @@ task ktlint(type: JavaExec, group: "verification") {
 }
 
 check.dependsOn ktlint
+
+kapt {
+    correctErrorTypes true
+}

@@ -16,7 +16,6 @@ import javax.inject.Singleton
 import kotlin.coroutines.resume
 
 @ExperimentalCoroutinesApi
-@Singleton
 class DefaultLocationTracker @Inject constructor(
     private val locationClient: FusedLocationProviderClient,
     private val application: Application,
@@ -27,6 +26,7 @@ class DefaultLocationTracker @Inject constructor(
             application,
             Manifest.permission.ACCESS_FINE_LOCATION,
         ) == PackageManager.PERMISSION_GRANTED
+
         val hasAccessCourseLocationPermission = ContextCompat.checkSelfPermission(
             application,
             Manifest.permission.ACCESS_COARSE_LOCATION,

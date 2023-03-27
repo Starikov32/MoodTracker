@@ -10,7 +10,6 @@ import com.example.moodtracker.domain.weather.WeatherInfo
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherApi,
 ) : WeatherRepository {

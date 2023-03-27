@@ -29,6 +29,7 @@ fun WeatherCard(
 ) {
     state.weatherInfo?.currentWeatherData?.let { data ->
         Card(
+            backgroundColor = backgroundColor,
             shape = RoundedCornerShape(10.dp),
             modifier = modifier.padding(16.dp),
         ) {

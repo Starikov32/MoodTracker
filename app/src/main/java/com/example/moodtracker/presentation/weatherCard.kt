@@ -18,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moodtracker.R
+import com.example.moodtracker.domain.repository.WeatherRepository
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
@@ -50,6 +51,14 @@ fun WeatherCard(
                         color = Color.White,
                     )
                 }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "Moscow",
+                    fontSize = 15.sp,
+                    color = Color.White,
+                )
 
                 Spacer(modifier = Modifier.height(16.dp))
 

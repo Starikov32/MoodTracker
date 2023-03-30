@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(DarkBlue),
                 ) {
-                    WeatherCard(
+                    weatherCard(
                         state = viewModel.state,
                         backgroundColor = DeepBlue,
                     )

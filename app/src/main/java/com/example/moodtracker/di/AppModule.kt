@@ -17,11 +17,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
+    private const val URL_API = "https://api.open-meteo.com/"
+
     @Provides
     @Singleton
     fun provideWeatherApi(): WeatherApi {
         return Retrofit.Builder()
-            .baseUrl("https://api.open-meteo.com/")
+            .baseUrl(URL_API)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
             .create()

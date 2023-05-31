@@ -1,7 +1,5 @@
 package com.example.moodtracker.presentation
 
-import android.os.Build.VERSION.SDK_INT
-import android.os.Build.VERSION_CODES.O
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,8 +16,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moodtracker.R
-import com.example.moodtracker.domain.repository.WeatherRepository
-import java.time.format.DateTimeFormatter
+import org.threeten.bp.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 @Composable
@@ -40,17 +37,16 @@ fun WeatherCard(
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                if (SDK_INT >= O) {
-                    Text(
-                        text = "Today ${
-                            data.time.format(
-                                DateTimeFormatter.ofPattern("HH:mm"),
-                            )
-                        }",
-                        modifier = Modifier.align(Alignment.End),
-                        color = Color.White,
-                    )
-                }
+                Text(
+                    text = "Today ${
+                        data.time.format(
+                            DateTimeFormatter.ofPattern("HH:mm"),
+                        )
+                    }",
+                    modifier = Modifier.align(Alignment.End),
+                    color = Color.White,
+                )
+
 
                 Spacer(modifier = Modifier.height(16.dp))
 

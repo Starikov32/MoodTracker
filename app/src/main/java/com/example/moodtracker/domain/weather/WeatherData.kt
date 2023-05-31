@@ -1,6 +1,7 @@
 package com.example.moodtracker.domain.weather
 
-import java.time.LocalDateTime
+import org.threeten.bp.LocalDateTime
+
 
 data class WeatherData(
     val time: LocalDateTime,

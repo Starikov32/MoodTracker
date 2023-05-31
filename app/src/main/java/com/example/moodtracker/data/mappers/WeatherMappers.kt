@@ -1,22 +1,22 @@
 package com.example.moodtracker.data.mappers
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.moodtracker.data.network.dto.WeatherDataDto
 import com.example.moodtracker.data.network.dto.WeatherDto
 import com.example.moodtracker.domain.weather.WeatherData
 import com.example.moodtracker.domain.weather.WeatherInfo
 import com.example.moodtracker.domain.weather.WeatherType
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
+
 
 private data class IndexedWeatherData(
     val index: Int,
     val data: WeatherData,
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
+    val HOUR = 24
+
     return time.mapIndexed { index, time ->
         val temperature = temperatures[index]
         val weatherCode = weatherCodes[index]
@@ -35,13 +35,12 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
             ),
         )
     }.groupBy {
-        it.index / 24
+        it.index / HOUR
     }.mapValues {
         it.value.map { it.data }
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun WeatherDto.toWeatherInfo(): WeatherInfo {
     val weatherDataMap = weatherData.toWeatherDataMap()
     val now = LocalDateTime.now()

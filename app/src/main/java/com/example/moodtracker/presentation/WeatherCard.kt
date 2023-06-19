@@ -47,7 +47,6 @@ fun WeatherCard(
                     color = Color.White,
                 )
 
-
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
@@ -68,7 +67,7 @@ fun WeatherCard(
 
                 Text(
                     text = "${data.temperatureCelcius}°C",
-                    fontSize = 50.sp,
+                    fontSize = 25.sp,
                     color = Color.White,
                 )
 
@@ -76,7 +75,7 @@ fun WeatherCard(
 
                 Text(
                     text = data.weatherType.weatherDescription,
-                    fontSize = 20.sp,
+                    fontSize = 15.sp,
                     color = Color.White,
                 )
 
@@ -94,6 +93,8 @@ fun WeatherCard(
                         textStyle = TextStyle(color = Color.White),
                     )
 
+                    Spacer(modifier = Modifier.height(4.dp))
+
                     WeatherDataDisplay(
                         value = data.humidity.roundToInt(),
                         unit = "%",
@@ -101,6 +102,8 @@ fun WeatherCard(
                         iconTint = Color.White,
                         textStyle = TextStyle(color = Color.White),
                     )
+
+                    Spacer(modifier = Modifier.height(4.dp))
 
                     WeatherDataDisplay(
                         value = data.windSpeed.roundToInt(),

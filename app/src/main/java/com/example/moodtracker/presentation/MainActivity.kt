@@ -8,8 +8,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.ui.Modifier
 import com.example.moodtracker.presentation.ui.theme.DarkBlue
 import com.example.moodtracker.presentation.ui.theme.DeepBlue
@@ -39,17 +39,21 @@ class MainActivity : ComponentActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
             ),
         )
+
         setContent {
             MoodTrackerTheme {
-                Column(
+                LazyRow(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(DarkBlue),
                 ) {
-                    WeatherCard(
-                        state = viewModel.state,
-                        backgroundColor = DeepBlue,
-                    )
+                    items(count = 4) {
+                        WeatherCard(
+                            state = viewModel.state,
+                            backgroundColor = DeepBlue,
+                        )
+                    }
+
                 }
             }
         }

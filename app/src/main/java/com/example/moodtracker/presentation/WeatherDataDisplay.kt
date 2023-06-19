@@ -26,6 +26,7 @@ fun WeatherDataDisplay(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
+
     ) {
         Icon(
             imageVector = icon,

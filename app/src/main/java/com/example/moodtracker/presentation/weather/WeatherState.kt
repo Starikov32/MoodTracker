@@ -1,4 +1,4 @@
-package com.example.moodtracker.presentation
+package com.example.moodtracker.presentation.weather
 
 import com.example.moodtracker.domain.weather.WeatherInfo
 

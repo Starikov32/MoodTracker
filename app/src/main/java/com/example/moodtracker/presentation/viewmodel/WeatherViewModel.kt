@@ -1,4 +1,4 @@
-package com.example.moodtracker.presentation
+package com.example.moodtracker.presentation.viewmodel
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moodtracker.domain.repository.WeatherRepository
 import com.example.moodtracker.domain.util.Resource
+import com.example.moodtracker.presentation.weather.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

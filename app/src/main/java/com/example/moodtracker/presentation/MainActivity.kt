@@ -11,9 +11,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.ui.Modifier
-import com.example.moodtracker.presentation.ui.theme.DarkBlue
+import com.example.moodtracker.presentation.ui.theme.DarkOrange
 import com.example.moodtracker.presentation.ui.theme.DeepBlue
 import com.example.moodtracker.presentation.ui.theme.MoodTrackerTheme
+import com.example.moodtracker.presentation.viewmodel.WeatherViewModel
+import com.example.moodtracker.presentation.weather.Weather
+import com.example.moodtracker.presentation.weather.WeatherCard
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,19 +45,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoodTrackerTheme {
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(DarkBlue),
-                ) {
-                    items(count = 4) {
-                        WeatherCard(
-                            state = viewModel.state,
-                            backgroundColor = DeepBlue,
-                        )
-                    }
-
-                }
+                Weather(viewModel.state)
             }
         }
     }

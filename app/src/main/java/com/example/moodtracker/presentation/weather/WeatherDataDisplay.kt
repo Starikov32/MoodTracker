@@ -1,4 +1,4 @@
-package com.example.moodtracker.presentation
+package com.example.moodtracker.presentation.weather
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +26,7 @@ fun WeatherDataDisplay(
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
+
     ) {
         Icon(
             imageVector = icon,

@@ -11,3 +11,4 @@ data class WeatherData(
     val humidity: Double,
     val weatherType: WeatherType,
 )
+

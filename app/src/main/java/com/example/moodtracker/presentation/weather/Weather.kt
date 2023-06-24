@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.moodtracker.presentation.ui.theme.DarkOrange
-import com.example.moodtracker.presentation.ui.theme.DeepBlue
+import com.example.moodtracker.presentation.ui.theme.TransparentWhite
 
 @Composable
 fun Weather(weatherState: WeatherState) {
@@ -18,7 +18,7 @@ fun Weather(weatherState: WeatherState) {
         items(count = 4) {
             WeatherCard(
                 state = weatherState,
-                backgroundColor = DeepBlue,
+                backgroundColor = TransparentWhite,
             )
         }
 

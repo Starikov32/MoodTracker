@@ -8,7 +8,6 @@ import com.example.moodtracker.domain.weather.WeatherType
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
-
 private data class IndexedWeatherData(
     val index: Int,
     val data: WeatherData,

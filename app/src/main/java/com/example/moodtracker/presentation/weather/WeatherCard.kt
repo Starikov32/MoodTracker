@@ -1,6 +1,7 @@
 package com.example.moodtracker.presentation.weather
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,6 +35,7 @@ fun WeatherCard(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .background(backgroundColor)
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -44,7 +46,7 @@ fun WeatherCard(
                         )
                     }",
                     modifier = Modifier.align(Alignment.End),
-                    color = Color.White,
+                    color = Color.Black,
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -52,7 +54,7 @@ fun WeatherCard(
                 Text(
                     text = "Moscow",
                     fontSize = 15.sp,
-                    color = Color.White,
+                    color = Color.Black,
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -60,15 +62,15 @@ fun WeatherCard(
                 Image(
                     painter = painterResource(id = data.weatherType.iconRes),
                     contentDescription = null,
-                    modifier = Modifier.width(100.dp),
+                    modifier = Modifier.width(24.dp),
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "${data.temperatureCelcius}°C",
+                    text = "${data.temperatureCelsius}°C",
                     fontSize = 25.sp,
-                    color = Color.White,
+                    color = Color.Black,
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -76,7 +78,7 @@ fun WeatherCard(
                 Text(
                     text = data.weatherType.weatherDescription,
                     fontSize = 15.sp,
-                    color = Color.White,
+                    color = Color.Black,
                 )
             }
         }

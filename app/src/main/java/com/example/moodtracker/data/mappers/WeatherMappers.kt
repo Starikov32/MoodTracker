@@ -27,7 +27,7 @@ fun WeatherDataDto.toWeatherDataMap(): Map<Int, List<WeatherData>> {
             index = index,
             data = WeatherData(
                 time = LocalDateTime.parse(time, DateTimeFormatter.ISO_DATE_TIME),
-                temperatureCelcius = temperature,
+                temperatureCelsius = temperature,
                 pressure = pressure,
                 windSpeed = windSpeed,
                 humidity = humidity,

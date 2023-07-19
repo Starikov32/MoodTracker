@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.example.moodtracker.presentation.ui.theme.MoodTrackerTheme
+import com.example.moodtracker.presentation.theme.MoodTrackerTheme
 import com.example.moodtracker.presentation.viewmodel.WeatherViewModel
 import com.example.moodtracker.presentation.weather.Weather
 import com.jakewharton.threetenabp.AndroidThreeTen

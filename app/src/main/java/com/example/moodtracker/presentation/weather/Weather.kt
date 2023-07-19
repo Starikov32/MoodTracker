@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.moodtracker.presentation.ui.theme.DarkOrange
-import com.example.moodtracker.presentation.ui.theme.TransparentWhite
+import com.example.moodtracker.presentation.theme.DarkOrange
+import com.example.moodtracker.presentation.theme.TransparentWhite
 
 @Composable
 fun Weather(weatherState: WeatherState) {

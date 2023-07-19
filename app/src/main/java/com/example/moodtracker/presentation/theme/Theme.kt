@@ -1,4 +1,4 @@
-package com.example.moodtracker.presentation.ui.theme
+package com.example.moodtracker.presentation.theme
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable

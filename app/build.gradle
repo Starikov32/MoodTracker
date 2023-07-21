@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.moodtracker'
+    namespace 'com.radzhabov.moodtracker'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.moodtracker"
+        applicationId "com.radzhabov.moodtracker"
         minSdk 21
         targetSdk 34
         versionCode 1

@@ -24,15 +24,15 @@ fun AppNavigation(
         navController = navController as NavHostController,
         startDestination = Screens.BottomNavBar.route
     ){
-        composable(route = Screens.Home.route){ Home(weatherState) }
+        composable(route = Screens.Home.route){ Home(padding) }
 
-        composable(route = Screens.Stats.route ){ Stats(padding) }
+        composable(route = Screens.Stats.route ){ Stats() }
 
-        composable(route = Screens.Weather.route ){ Weather() }
+        composable(route = Screens.Weather.route ){ Weather(weatherState) }
 
         composable(route = Screens.Settings.route ){ Settings() }
 
-        composable(route = Screens.BottomNavBar.route ){ BottomNavBar(weatherState) }
+        composable(route = Screens.BottomNavBar.route ){ BottomNavBar(navController, weatherState) }
 
     }
 }

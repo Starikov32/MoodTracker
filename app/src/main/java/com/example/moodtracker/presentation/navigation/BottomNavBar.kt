@@ -64,7 +64,7 @@ fun BottomNavBar(
     ) { innerPadding ->
         when (selectedScreen) {
             0 -> Home(innerPadding)
-            1 -> Stats( )
+            1 -> Stats()
             2 -> Weather(weatherState)
             3 -> Settings()
         }

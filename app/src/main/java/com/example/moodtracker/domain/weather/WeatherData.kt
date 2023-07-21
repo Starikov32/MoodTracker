@@ -2,7 +2,6 @@ package com.example.moodtracker.domain.weather
 
 import org.threeten.bp.LocalDateTime
 
-
 data class WeatherData(
     val time: LocalDateTime,
     val temperatureCelsius: Double,

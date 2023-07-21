@@ -23,6 +23,7 @@ import org.threeten.bp.format.DateTimeFormatter
 @Composable
 fun WeatherCard(
     state: WeatherState,
+    dateTimeFormatter: DateTimeFormatter,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
 ) {
@@ -40,9 +41,7 @@ fun WeatherCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = data.time.format(
-                        DateTimeFormatter.ofPattern("dd.LL.yyyy HH:mm"),
-                    ),
+                    text = data.time.format(dateTimeFormatter),
                     modifier = Modifier.align(Alignment.End),
                     color = Color.Black,
                 )

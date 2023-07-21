@@ -7,9 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.navigation.compose.rememberNavController
+import com.example.moodtracker.presentation.navigation.AppNavigation
 import com.example.moodtracker.presentation.theme.MoodTrackerTheme
 import com.example.moodtracker.presentation.viewmodel.WeatherViewModel
-import com.example.moodtracker.presentation.weather.Weather
+import com.example.moodtracker.presentation.weather.WeatherStatus
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +40,8 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoodTrackerTheme {
-                Weather(viewModel.state)
+                val navController = rememberNavController()
+                AppNavigation(navController = navController, weatherState = viewModel.state)
             }
         }
     }

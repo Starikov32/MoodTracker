@@ -21,6 +21,5 @@ fun Weather(weatherState: WeatherState) {
                 backgroundColor = TransparentWhite,
             )
         }
-
     }
 }

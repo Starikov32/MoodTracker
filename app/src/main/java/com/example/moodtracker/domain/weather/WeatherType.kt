@@ -9,31 +9,31 @@ sealed class WeatherType(
 ) {
     object Sunny : WeatherType(
         weatherDescription = "Sunny",
-        iconRes = R.mipmap.ic_sunny_foreground,
+        iconRes = R.drawable.ic_sunny,
     )
     object Cloudy : WeatherType(
         weatherDescription = "Cloudy",
-        iconRes = R.mipmap.ic_cloudy_foreground,
+        iconRes = R.drawable.ic_cloudy,
     )
     object Foggy : WeatherType(
         weatherDescription = "Foggy",
-        iconRes = R.mipmap.ic_foggy_foreground,
+        iconRes = R.drawable.ic_fog,
     )
     object Hail : WeatherType(
         weatherDescription = "Hail",
-        iconRes = R.mipmap.ic_hail_foreground,
+        iconRes = R.drawable.ic_hail,
     )
     object HeavyRain : WeatherType(
         weatherDescription = "Heavy Rain",
-        iconRes = R.mipmap.ic_heavy_rain_foreground,
+        iconRes = R.drawable.ic_heavy_rain,
     )
     object Rainy : WeatherType(
         weatherDescription = "Rainy",
-        iconRes = R.mipmap.ic_rainy_foreground,
+        iconRes = R.drawable.ic_rainy,
     )
     object Wetly : WeatherType(
         weatherDescription = "Wetly",
-        iconRes = R.mipmap.ic_wetly_foreground,
+        iconRes = R.drawable.ic_wetly,
     )
 
     companion object {

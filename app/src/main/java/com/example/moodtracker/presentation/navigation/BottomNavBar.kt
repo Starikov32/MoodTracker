@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -19,16 +19,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.moodtracker.R
-import com.example.moodtracker.data.model.Screen
+import com.example.moodtracker.domain.screen.Screen
 import com.example.moodtracker.presentation.home.Home
 import com.example.moodtracker.presentation.settings.Settings
 import com.example.moodtracker.presentation.stats.Stats
-import com.example.moodtracker.presentation.ui.theme.DarkOrange
+import com.example.moodtracker.presentation.theme.DarkOrange
 import com.example.moodtracker.presentation.weather.Weather
 import com.example.moodtracker.presentation.weather.WeatherState
 
 @Composable
 fun BottomNavBar(
+    navController: NavController,
     weatherState: WeatherState
 ) {
     var selectedScreen by remember { mutableStateOf(0) }
@@ -46,7 +47,7 @@ fun BottomNavBar(
         bottomBar = {
             BottomNavigation(
                 backgroundColor = DarkOrange,
-                contentColor = Color.White,
+                contentColor = Color.Black,
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(15.dp, 15.dp, 0.dp, 0.dp))
@@ -62,9 +63,9 @@ fun BottomNavBar(
         }
     ) { innerPadding ->
         when (selectedScreen) {
-            0 -> Home(weatherState)
-            1 -> Stats(innerPadding)
-            2 -> Weather()
+            0 -> Home(innerPadding)
+            1 -> Stats( )
+            2 -> Weather(weatherState)
             3 -> Settings()
         }
     }

@@ -40,11 +40,9 @@ fun WeatherCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = "Today ${
-                        data.time.format(
-                            DateTimeFormatter.ofPattern("HH:mm"),
-                        )
-                    }",
+                    text = data.time.format(
+                        DateTimeFormatter.ofPattern("dd.LL.yyyy HH:mm"),
+                    ),
                     modifier = Modifier.align(Alignment.End),
                     color = Color.Black,
                 )
@@ -52,7 +50,7 @@ fun WeatherCard(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "Moscow",
+                    text = "Kirovo-Chepetsk",
                     fontSize = 15.sp,
                     color = Color.Black,
                 )

@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.radzhabov.moodtracker.data.network.api.WeatherApi
+import com.radzhabov.moodtracker.domain.util.Constants.Companion.URL_API
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +17,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object ApiModule {
-
-    private const val URL_API = "https://api.open-meteo.com/"
 
     @Provides
     @Singleton

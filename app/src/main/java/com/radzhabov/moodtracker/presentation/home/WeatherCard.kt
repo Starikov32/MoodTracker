@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.presentation.weather
+package com.radzhabov.moodtracker.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,12 +18,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.radzhabov.moodtracker.presentation.weather.WeatherState
+import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 @Composable
 fun WeatherCard(
     state: WeatherState,
-    dateTimeFormatter: DateTimeFormatter,
+    date: LocalDateTime,
     backgroundColor: Color,
     modifier: Modifier = Modifier,
 ) {
@@ -41,7 +43,7 @@ fun WeatherCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
-                    text = data.time.format(dateTimeFormatter),
+                    text = date.format(DateTimeFormatter.ofPattern("dd.LL.yyyy HH:mm")),
                     modifier = Modifier.align(Alignment.End),
                     color = Color.Black,
                 )

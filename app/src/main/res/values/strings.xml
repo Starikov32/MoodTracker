@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MoodTracker</string>
+    <string name="weather_city">Kirovo-Chepetsk</string>
 </resources>

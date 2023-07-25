@@ -8,16 +8,16 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.navigation.compose.rememberNavController
-import com.radzhabov.moodtracker.presentation.theme.MoodTrackerTheme
-import com.radzhabov.moodtracker.presentation.viewmodel.WeatherViewModel
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.radzhabov.moodtracker.presentation.navigation.AppNavigation
+import com.radzhabov.moodtracker.presentation.theme.MoodTrackerTheme
+import com.radzhabov.moodtracker.presentation.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: WeatherViewModel by viewModels()
+    private val weatherViewModel: WeatherViewModel by viewModels()
     private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
         permissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions(),
         ) {
-            viewModel.loadWeatherInfo()
+            weatherViewModel.loadWeatherInfo()
         }
 
         permissionLauncher.launch(
@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
                 AppNavigation(
                     navController = navController,
-                    weatherState = viewModel.state
+                    weatherState = weatherViewModel.state
                 )
             }
         }

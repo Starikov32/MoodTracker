@@ -5,7 +5,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun Weather(
+fun WeatherScreen(
     padding: PaddingValues,
 ) {
     Text(text = "Weather Screen")

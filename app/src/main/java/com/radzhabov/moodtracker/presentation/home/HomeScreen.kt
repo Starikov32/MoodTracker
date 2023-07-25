@@ -17,7 +17,7 @@ import com.radzhabov.moodtracker.presentation.weather.WeatherState
 import org.threeten.bp.LocalDateTime
 
 @Composable
-fun Home(
+fun HomeScreen(
     weatherState: WeatherState
 ) {
     val currentDate = LocalDateTime.now()

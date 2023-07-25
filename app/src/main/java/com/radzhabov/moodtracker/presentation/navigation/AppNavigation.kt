@@ -7,10 +7,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.radzhabov.moodtracker.domain.screen.Screens
-import com.radzhabov.moodtracker.presentation.home.Home
-import com.radzhabov.moodtracker.presentation.settings.Settings
-import com.radzhabov.moodtracker.presentation.stats.Stats
-import com.radzhabov.moodtracker.presentation.weather.Weather
+import com.radzhabov.moodtracker.presentation.home.HomeScreen
+import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
+import com.radzhabov.moodtracker.presentation.stats.StatsScreen
+import com.radzhabov.moodtracker.presentation.weather.WeatherScreen
 import com.radzhabov.moodtracker.presentation.weather.WeatherState
 
 @Composable
@@ -24,13 +24,13 @@ fun AppNavigation(
         navController = navController as NavHostController,
         startDestination = Screens.BottomNavBar.route
     ){
-        composable(route = Screens.Home.route){ Home(weatherState) }
+        composable(route = Screens.Home.route){ HomeScreen(weatherState) }
 
-        composable(route = Screens.Stats.route ){ Stats() }
+        composable(route = Screens.Stats.route ){ StatsScreen() }
 
-        composable(route = Screens.Weather.route ){ Weather( padding) }
+        composable(route = Screens.Weather.route ){ WeatherScreen( padding) }
 
-        composable(route = Screens.Settings.route ){ Settings() }
+        composable(route = Screens.Settings.route ){ SettingsScreen() }
 
         composable(route = Screens.BottomNavBar.route ){ BottomNavBar(navController, weatherState) }
 

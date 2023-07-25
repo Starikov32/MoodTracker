@@ -1,7 +1,7 @@
 package com.radzhabov.moodtracker.di
 
-import com.radzhabov.moodtracker.data.repository.WeatherRepositoryImpl
-import com.radzhabov.moodtracker.domain.repository.WeatherRepository
+import com.radzhabov.moodtracker.data.repository.WeatherApiRepositoryImpl
+import com.radzhabov.moodtracker.domain.repository.WeatherApiRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,6 +15,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindRepositoryWeather(
-        weatherRepositoryImpl: WeatherRepositoryImpl,
-    ): WeatherRepository
+        weatherApiRepositoryImpl: WeatherApiRepositoryImpl,
+    ): WeatherApiRepository
 }

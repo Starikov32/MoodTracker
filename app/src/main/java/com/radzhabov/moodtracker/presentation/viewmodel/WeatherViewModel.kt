@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.radzhabov.moodtracker.domain.repository.WeatherRepository
+import com.radzhabov.moodtracker.domain.repository.WeatherApiRepository
 import com.radzhabov.moodtracker.domain.util.Resource
 import com.radzhabov.moodtracker.presentation.weather.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
-    private val repository: WeatherRepository,
+    private val repository: WeatherApiRepository,
 ) : ViewModel() {
 
     var state by mutableStateOf(WeatherState())

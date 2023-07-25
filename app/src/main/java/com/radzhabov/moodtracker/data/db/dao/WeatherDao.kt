@@ -15,6 +15,6 @@ interface WeatherDao {
     suspend fun getWeather(time: LocalDateTime): WeatherEntity?
 
     @Insert
-    suspend fun addedWeather(weatherEntity: WeatherEntity)
+    suspend fun addWeather(weatherEntity: WeatherEntity)
 
 }

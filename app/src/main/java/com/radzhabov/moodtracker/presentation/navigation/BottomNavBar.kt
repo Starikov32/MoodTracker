@@ -20,11 +20,11 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.screen.Screen
-import com.radzhabov.moodtracker.presentation.home.Home
-import com.radzhabov.moodtracker.presentation.settings.Settings
-import com.radzhabov.moodtracker.presentation.stats.Stats
+import com.radzhabov.moodtracker.presentation.home.HomeScreen
+import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
+import com.radzhabov.moodtracker.presentation.stats.StatsScreen
 import com.radzhabov.moodtracker.presentation.theme.DarkOrange
-import com.radzhabov.moodtracker.presentation.weather.Weather
+import com.radzhabov.moodtracker.presentation.weather.WeatherScreen
 import com.radzhabov.moodtracker.presentation.weather.WeatherState
 
 @Composable
@@ -63,10 +63,10 @@ fun BottomNavBar(
         }
     ) { innerPadding ->
         when (selectedScreen) {
-            0 -> Home(weatherState)
-            1 -> Stats()
-            2 -> Weather(innerPadding)
-            3 -> Settings()
+            0 -> HomeScreen(weatherState)
+            1 -> StatsScreen()
+            2 -> WeatherScreen(innerPadding)
+            3 -> SettingsScreen()
         }
     }
 }

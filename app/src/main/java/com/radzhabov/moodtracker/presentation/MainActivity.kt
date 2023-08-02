@@ -13,6 +13,8 @@ import com.radzhabov.moodtracker.presentation.navigation.AppNavigation
 import com.radzhabov.moodtracker.presentation.theme.MoodTrackerTheme
 import com.radzhabov.moodtracker.presentation.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -40,10 +42,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             MoodTrackerTheme {
                 val navController = rememberNavController()
+                val currentDate = LocalDateTime.now()
+                val formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy; HH:mm")
+                val formattedDate = currentDate.format(formatter)
 
                 AppNavigation(
                     navController = navController,
-                    weatherState = weatherViewModel.state
+                    weatherState = weatherViewModel.state,
+                    date = formattedDate,
                 )
             }
         }

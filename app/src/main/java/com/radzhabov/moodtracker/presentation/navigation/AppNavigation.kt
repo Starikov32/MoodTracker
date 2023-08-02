@@ -11,12 +11,13 @@ import com.radzhabov.moodtracker.presentation.home.HomeScreen
 import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
 import com.radzhabov.moodtracker.presentation.weather.WeatherScreen
-import com.radzhabov.moodtracker.presentation.weather.WeatherState
+import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable
 fun AppNavigation(
     navController: NavController,
-    weatherState: WeatherState
+    weatherState: WeatherState,
+    date: String,
 ){
     val padding = PaddingValues()
 
@@ -24,7 +25,7 @@ fun AppNavigation(
         navController = navController as NavHostController,
         startDestination = Screens.BottomNavBar.route
     ){
-        composable(route = Screens.Home.route){ HomeScreen(weatherState) }
+        composable(route = Screens.Home.route){ HomeScreen(weatherState, date) }
 
         composable(route = Screens.Stats.route ){ StatsScreen() }
 
@@ -32,7 +33,7 @@ fun AppNavigation(
 
         composable(route = Screens.Settings.route ){ SettingsScreen() }
 
-        composable(route = Screens.BottomNavBar.route ){ BottomNavBar(navController, weatherState) }
+        composable(route = Screens.BottomNavBar.route ){ BottomNavBar(navController, weatherState, date) }
 
     }
 }

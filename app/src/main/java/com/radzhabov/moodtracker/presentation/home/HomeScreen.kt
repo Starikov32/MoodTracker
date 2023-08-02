@@ -11,18 +11,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.radzhabov.moodtracker.presentation.theme.DarkOrange
 import com.radzhabov.moodtracker.presentation.theme.TransparentWhite
-import com.radzhabov.moodtracker.presentation.weather.WeatherState
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.format.DateTimeFormatter
+import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable
 fun HomeScreen(
-    weatherState: WeatherState
+    weatherState: WeatherState,
+    date: String
 ) {
-    val currentDate = LocalDateTime.now()
-    val formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy; HH:mm")
-    val formattedDate = currentDate.format(formatter)
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -30,27 +25,9 @@ fun HomeScreen(
     ) {
         WeatherCard(
             state = weatherState,
-            date = formattedDate,
+            date = date,
             backgroundColor = TransparentWhite,
         )
-//        LazyRow(
-//            modifier = Modifier
-//                .fillMaxWidth(),
-//            reverseLayout = true,
-//        ) {
-//
-//            items(count = 5) {index ->
-//                val daysToSubtract = index * -1
-//                val dateToDisplay = currentDate.plusDays(daysToSubtract.toLong())
-//
-//                WeatherCard(
-//                    state = weatherState,
-//                    date = dateToDisplay,
-//                    backgroundColor = TransparentWhite,
-//                )
-//            }
-//
-//        }
 
         Spacer(modifier = Modifier.padding(5.dp))
 

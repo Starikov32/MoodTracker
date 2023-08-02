@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.presentation.theme.DarkOrange
-import com.radzhabov.moodtracker.presentation.weather.WeatherState
+import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable
 fun WeatherCard(

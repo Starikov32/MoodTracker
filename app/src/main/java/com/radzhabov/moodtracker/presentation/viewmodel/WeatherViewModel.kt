@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.radzhabov.moodtracker.domain.repository.WeatherApiRepository
 import com.radzhabov.moodtracker.domain.util.Resource
-import com.radzhabov.moodtracker.presentation.weather.WeatherState
+import com.radzhabov.moodtracker.domain.weather.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

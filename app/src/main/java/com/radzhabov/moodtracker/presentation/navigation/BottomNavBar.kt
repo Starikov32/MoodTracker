@@ -24,7 +24,6 @@ import com.radzhabov.moodtracker.presentation.home.HomeScreen
 import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
 import com.radzhabov.moodtracker.presentation.theme.DarkOrange
-import com.radzhabov.moodtracker.presentation.weather.WeatherScreen
 import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable

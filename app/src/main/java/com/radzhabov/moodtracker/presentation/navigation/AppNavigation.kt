@@ -10,7 +10,6 @@ import com.radzhabov.moodtracker.domain.screen.Screens
 import com.radzhabov.moodtracker.presentation.home.HomeScreen
 import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
-import com.radzhabov.moodtracker.presentation.weather.WeatherScreen
 import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable
@@ -29,9 +28,7 @@ fun AppNavigation(
 
         composable(route = Screens.Stats.route ){ StatsScreen() }
 
-        composable(route = Screens.Weather.route ){ WeatherScreen( padding) }
-
-        composable(route = Screens.Settings.route ){ SettingsScreen() }
+        composable(route = Screens.Settings.route ){ SettingsScreen(padding) }
 
         composable(route = Screens.BottomNavBar.route ){ BottomNavBar(navController, weatherState, date) }
 

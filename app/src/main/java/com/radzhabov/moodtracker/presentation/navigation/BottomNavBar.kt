@@ -9,7 +9,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -25,20 +25,20 @@ import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
 import com.radzhabov.moodtracker.presentation.theme.DarkOrange
 import com.radzhabov.moodtracker.presentation.weather.WeatherScreen
-import com.radzhabov.moodtracker.presentation.weather.WeatherState
+import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable
 fun BottomNavBar(
     navController: NavController,
-    weatherState: WeatherState
+    weatherState: WeatherState,
+    date: String,
 ) {
-    var selectedScreen by remember { mutableStateOf(0) }
+    var selectedScreen by remember { mutableIntStateOf(0) }
     val scaffoldState = rememberScaffoldState()
 
     val screens = listOf(
         Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
         Screen(label = "Stats", icon = painterResource(R.drawable.ic_stats)),
-        Screen(label = "Weather", icon = painterResource(R.drawable.ic_weather)),
         Screen(label = "Settings", icon = painterResource(R.drawable.ic_settings))
     )
 
@@ -63,10 +63,9 @@ fun BottomNavBar(
         }
     ) { innerPadding ->
         when (selectedScreen) {
-            0 -> HomeScreen(weatherState)
+            0 -> HomeScreen(weatherState, date)
             1 -> StatsScreen()
-            2 -> WeatherScreen(innerPadding)
-            3 -> SettingsScreen()
+            2 -> SettingsScreen(innerPadding)
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.presentation.weather
+package com.radzhabov.moodtracker.domain.weather
 
 import com.radzhabov.moodtracker.domain.weather.WeatherInfo
 

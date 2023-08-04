@@ -2,11 +2,13 @@ package com.radzhabov.moodtracker.presentation.navigation
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -33,7 +35,7 @@ fun BottomNavBar(
     date: String,
 ) {
     var selectedScreen by remember { mutableIntStateOf(0) }
-    val scaffoldState = rememberScaffoldState()
+    val snackBarHostState = remember { SnackbarHostState() }
 
     val screens = listOf(
         Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
@@ -42,17 +44,16 @@ fun BottomNavBar(
     )
 
     Scaffold(
-        scaffoldState = scaffoldState,
+        snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         bottomBar = {
-            BottomNavigation(
-                backgroundColor = DarkOrange,
+            NavigationBar(
                 contentColor = Color.Black,
                 modifier = Modifier
                     .fillMaxWidth()
                     .clip(RoundedCornerShape(15.dp, 15.dp, 0.dp, 0.dp))
             ) {
                 screens.forEachIndexed { index, screen ->
-                    BottomNavigationItem(
+                    NavigationBarItem(
                         selected = selectedScreen == index,
                         onClick = { selectedScreen = index },
                         icon = { Icon(screen.icon, contentDescription = screen.label) },

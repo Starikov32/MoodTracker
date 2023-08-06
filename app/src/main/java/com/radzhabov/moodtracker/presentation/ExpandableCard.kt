@@ -11,11 +11,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.radzhabov.moodtracker.R
-import com.radzhabov.moodtracker.presentation.theme.TransparenOrange
 
 @Composable
 fun ExpandableCard() {
@@ -26,8 +26,9 @@ fun ExpandableCard() {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp),
-        shape = RoundedCornerShape(8.dp),
+            .padding(16.dp)
+            .shadow(elevation = 8.dp),
+        shape = RoundedCornerShape(size = 15.dp),
     ) {
         Column(
             modifier = Modifier

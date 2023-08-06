@@ -1,14 +1,17 @@
 package com.radzhabov.moodtracker.presentation.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,22 +35,21 @@ fun WeatherCard(
         Card(
             modifier = Modifier
                 .padding(16.dp)
+                .fillMaxWidth()
                 .shadow(elevation = 8.dp),
             shape = RoundedCornerShape(size = 15.dp),
         ) {
             Row(
                 modifier = modifier
-                    .fillMaxWidth()
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
 
                 Column {
                     Text(
-                        fontSize = 15.sp,
+                        style = MaterialTheme.typography.titleSmall,
                         text = date,
-                        modifier = Modifier
-                            .padding(start = 4.dp),
                         color = Color.Black,
                     )
 
@@ -55,35 +57,29 @@ fun WeatherCard(
 
                     Text(
                         text = stringResource(R.string.weather_city),
-                        fontSize = 15.sp,
+                        style = MaterialTheme.typography.titleSmall,
                         color = Color.Black,
                     )
                 }
 
-                Spacer(modifier = Modifier.padding(4.dp))
-
-                Text(
-                    modifier = Modifier.padding(end = 4.dp),
-                    text = "${data.temperatureCelsius}°C",
-                    fontSize = 25.sp,
-                    color = Color.Black,
-                )
-
-                Spacer(modifier = Modifier.padding(4.dp))
-
-                Text(
-                    modifier = Modifier.padding(end = 4.dp),
-                    text = data.weatherType.weatherDescription,
-                    fontSize = 15.sp,
-                    color = Color.Black,
-                )
-
-                Spacer(modifier = Modifier.padding(4.dp))
+                Spacer(modifier = Modifier.weight(1f))
 
                 Image(
                     painter = painterResource(id = data.weatherType.iconRes),
                     contentDescription = null,
-                    modifier = Modifier.width(24.dp),
+                    modifier = Modifier
+                        .height(44.dp)
+                        .width(52.dp)
+                        .padding(end = 4.dp),
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    style = MaterialTheme.typography.titleLarge,
+                    text = "${data.temperatureCelsius}°C",
+                    fontSize = 24.sp,
+                    color = Color.Black,
                 )
             }
         }

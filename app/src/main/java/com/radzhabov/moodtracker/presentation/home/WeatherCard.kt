@@ -36,7 +36,7 @@ fun WeatherCard(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
-                .shadow(elevation = 8.dp),
+                .shadow(elevation = 4.dp, shape = MaterialTheme.shapes.medium),
             shape = RoundedCornerShape(size = 15.dp),
         ) {
             Row(

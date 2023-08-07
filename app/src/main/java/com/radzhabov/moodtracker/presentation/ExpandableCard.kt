@@ -13,15 +13,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
-import com.radzhabov.moodtracker.R
 
 @Composable
-fun ExpandableCard() {
+fun ExpandableCard(
+    painterDownIcon: Painter,
+    painterUpIcon: Painter,
+) {
     var isExpanded by remember { mutableStateOf(false) }
-    val painterDownIcon = painterResource(id = R.drawable.ic_down)
-    val painterUpIcon = painterResource(id = R.drawable.ic_up)
 
     Card(
         modifier = Modifier

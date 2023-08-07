@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -33,6 +34,8 @@ fun BottomNavBar(
     navController: NavController,
     weatherState: WeatherState,
     date: String,
+    painterDownIcon: Painter,
+    painterUpIcon: Painter,
 ) {
     var selectedScreen by remember { mutableIntStateOf(0) }
     val snackBarHostState = remember { SnackbarHostState() }
@@ -63,7 +66,7 @@ fun BottomNavBar(
         }
     ) { innerPadding ->
         when (selectedScreen) {
-            0 -> HomeScreen(weatherState, date)
+            0 -> HomeScreen(weatherState, date, painterDownIcon, painterUpIcon)
             1 -> StatsScreen()
             2 -> SettingsScreen(innerPadding)
         }

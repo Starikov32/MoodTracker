@@ -2,6 +2,7 @@ package com.radzhabov.moodtracker.presentation.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -17,20 +18,26 @@ fun AppNavigation(
     navController: NavController,
     weatherState: WeatherState,
     date: String,
+    painterDownIcon: Painter,
+    painterUpIcon: Painter,
+    padding: PaddingValues
 ){
-    val padding = PaddingValues()
-
     NavHost(
         navController = navController as NavHostController,
         startDestination = Screens.BottomNavBar.route
     ){
-        composable(route = Screens.Home.route){ HomeScreen(weatherState, date) }
+
+        composable(route = Screens.Home.route){
+            HomeScreen(weatherState, date, painterDownIcon, painterUpIcon)
+        }
 
         composable(route = Screens.Stats.route ){ StatsScreen() }
 
         composable(route = Screens.Settings.route ){ SettingsScreen(padding) }
 
-        composable(route = Screens.BottomNavBar.route ){ BottomNavBar(navController, weatherState, date) }
+        composable(route = Screens.BottomNavBar.route ){
+            BottomNavBar(navController, weatherState, date, painterDownIcon, painterUpIcon)
+        }
 
     }
 }

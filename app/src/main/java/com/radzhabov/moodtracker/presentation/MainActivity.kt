@@ -7,8 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.compose.rememberNavController
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.presentation.navigation.AppNavigation
 import com.radzhabov.moodtracker.presentation.theme.MoodTrackerTheme
 import com.radzhabov.moodtracker.presentation.viewmodel.WeatherViewModel
@@ -45,12 +48,19 @@ class MainActivity : ComponentActivity() {
                 val currentDate = LocalDateTime.now()
                 val formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy; HH:mm")
                 val formattedDate = currentDate.format(formatter)
+                val painterDownIcon = painterResource(id = R.drawable.ic_down)
+                val painterUpIcon = painterResource(id = R.drawable.ic_up)
+                val padding = PaddingValues()
 
                 AppNavigation(
                     navController = navController,
                     weatherState = weatherViewModel.state,
                     date = formattedDate,
+                    painterDownIcon = painterDownIcon,
+                    painterUpIcon = painterUpIcon,
+                    padding = padding,
                 )
+
             }
         }
     }

@@ -1,9 +1,17 @@
 package com.radzhabov.moodtracker.presentation.stats
 
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
+import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun StatsScreen() {
-    Text(text = "Stats screen")
+    Card(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Text(text = "Stats screen")
+    }
+
 }

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
+import com.radzhabov.moodtracker.presentation.ExpandableCard
 
 @Composable
 fun HomeContentCard() {
@@ -18,9 +19,6 @@ fun HomeContentCard() {
             .shadow(elevation = 8.dp),
         shape = RoundedCornerShape(size = 15.dp),
     ) {
-        Text(
-            modifier = Modifier.padding(start = 10.dp),
-            text = "Home Content"
-        )
+        ExpandableCard()
     }
 }

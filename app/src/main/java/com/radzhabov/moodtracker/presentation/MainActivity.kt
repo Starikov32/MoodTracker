@@ -60,6 +60,7 @@ class MainActivity : ComponentActivity() {
                     painterUpIcon = painterUpIcon,
                     padding = padding,
                 )
+
             }
         }
     }

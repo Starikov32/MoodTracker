@@ -1,10 +1,5 @@
 package com.radzhabov.moodtracker.presentation
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -15,6 +10,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import com.radzhabov.moodtracker.presentation.home.animation.AnimationCard
 
 @Composable
 fun ExpandableCard(
@@ -41,7 +37,7 @@ fun ExpandableCard(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Заголовок карточки",
+                    text = "Еда",
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(start = 5.dp),
                     color = Color.Black
@@ -56,18 +52,7 @@ fun ExpandableCard(
                     )
                 }
             }
-            AnimatedVisibility(
-                visible = isExpanded,
-                modifier = Modifier.padding(start = 5.dp),
-                enter = fadeIn() + expandVertically(),
-                exit = fadeOut() + shrinkVertically()
-            ) {
-                Text(
-                    text = "Раскрывающееся содержимое карточки",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = Color.Gray
-                )
-            }
+            AnimationCard(isExpanded = isExpanded)
         }
     }
 }

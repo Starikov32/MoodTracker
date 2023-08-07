@@ -8,6 +8,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.compose.rememberNavController
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -51,10 +53,11 @@ class MainActivity : ComponentActivity() {
                 val painterDownIcon = painterResource(id = R.drawable.ic_down)
                 val painterUpIcon = painterResource(id = R.drawable.ic_up)
                 val padding = PaddingValues()
+                val weatherState by weatherViewModel.state.collectAsState()
 
                 AppNavigation(
                     navController = navController,
-                    weatherState = weatherViewModel.state,
+                    weatherState = weatherState,
                     date = formattedDate,
                     painterDownIcon = painterDownIcon,
                     painterUpIcon = painterUpIcon,

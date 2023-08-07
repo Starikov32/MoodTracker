@@ -9,40 +9,43 @@ import com.radzhabov.moodtracker.domain.repository.WeatherApiRepository
 import com.radzhabov.moodtracker.domain.util.Resource
 import com.radzhabov.moodtracker.domain.weather.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
     private val repository: WeatherApiRepository,
 ) : ViewModel() {
 
-    var state by mutableStateOf(WeatherState())
-        private set
+    private val _state = MutableStateFlow(WeatherState())
+    val state: StateFlow<WeatherState> get() = _state
 
     fun loadWeatherInfo() {
         viewModelScope.launch {
-            state = state.copy(
+            _state.value = _state.value.copy(
                 isLoading = true,
                 error = null,
             )
-            when (val result = repository.getWeatherData(58.55, 50.04)) {
-                is Resource.Success -> {
-                    state = state.copy(
-                        weatherInfo = result.data,
-                        isLoading = false,
-                        error = null,
-                    )
-                }
-                is Resource.Error -> {
-                    state = state.copy(
-                        weatherInfo = null,
-                        isLoading = false,
-                        error = result.message,
-                    )
+            repository.getWeatherData(58.55, 50.04).collect { result ->
+                when (result) {
+                    is Resource.Success -> {
+                        _state.value = _state.value.copy(
+                            weatherInfo = result.data,
+                            isLoading = false,
+                            error = null,
+                        )
+                    }
+                    is Resource.Error -> {
+                        _state.value = _state.value.copy(
+                            weatherInfo = null,
+                            isLoading = false,
+                            error = result.message,
+                        )
+                    }
                 }
             }
         }
     }
-
 }

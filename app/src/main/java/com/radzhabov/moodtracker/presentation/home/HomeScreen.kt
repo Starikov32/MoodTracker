@@ -18,20 +18,23 @@ fun HomeScreen(
     painterDownIcon: Painter,
     painterUpIcon: Painter,
 ) {
-    Card {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-        ) {
-            WeatherCard(
-                state = weatherState,
-                date = date,
-            )
+    weatherState.weatherInfo?.currentWeatherData?.let { data ->
+        Card {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize(),
+            ) {
+                WeatherCard(
+                    date = date,
+                    painter = data.weatherType.iconRes,
+                    temperatureCelsius = data.temperatureCelsius,
+                )
 
-            Spacer(modifier = Modifier.padding(5.dp))
+                Spacer(modifier = Modifier.padding(5.dp))
 
-            HomeContentCard(painterDownIcon, painterUpIcon)
+                HomeContentCard(painterDownIcon, painterUpIcon)
 
+            }
         }
     }
 }

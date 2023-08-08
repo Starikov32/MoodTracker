@@ -2,7 +2,6 @@ package com.radzhabov.moodtracker.presentation.navigation
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -26,7 +25,6 @@ import com.radzhabov.moodtracker.domain.screen.Screen
 import com.radzhabov.moodtracker.presentation.home.HomeScreen
 import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
-import com.radzhabov.moodtracker.presentation.theme.DarkOrange
 import com.radzhabov.moodtracker.domain.weather.WeatherState
 
 @Composable

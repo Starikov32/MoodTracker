@@ -1,5 +1,6 @@
 package com.radzhabov.moodtracker.presentation
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -9,11 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.presentation.home.animation.AnimationCard
 
 @Composable
 fun ExpandableCard(
+    nameOfCard: String,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
 ) {
@@ -36,8 +40,16 @@ fun ExpandableCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_neutral),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(44.dp)
+                        .width(52.dp)
+                        .padding(end = 4.dp),
+                )
                 Text(
-                    text = "Еда",
+                    text = nameOfCard,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(start = 5.dp),
                     color = Color.Black

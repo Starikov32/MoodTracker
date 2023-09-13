@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.presentation.home
+package com.radzhabov.moodtracker.presentation.home.content
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import com.radzhabov.moodtracker.domain.weather.WeatherState
+import com.radzhabov.moodtracker.presentation.home.weather.WeatherCard
 
 @Composable
 fun HomeScreen(

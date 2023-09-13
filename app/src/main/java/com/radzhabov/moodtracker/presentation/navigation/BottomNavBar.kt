@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.screen.Screen
-import com.radzhabov.moodtracker.presentation.home.HomeScreen
+import com.radzhabov.moodtracker.presentation.home.content.HomeScreen
 import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
 import com.radzhabov.moodtracker.domain.weather.WeatherState

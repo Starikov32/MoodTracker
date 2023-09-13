@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.presentation.home
+package com.radzhabov.moodtracker.presentation.home.weather
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

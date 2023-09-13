@@ -1,6 +1,7 @@
-package com.radzhabov.moodtracker.presentation
+package com.radzhabov.moodtracker.presentation.home
 
-import androidx.compose.foundation.Image
+import android.widget.Toast
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -10,9 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.radzhabov.moodtracker.R
+import androidx.compose.ui.unit.sp
 import com.radzhabov.moodtracker.presentation.home.animation.AnimationCard
 
 @Composable
@@ -22,6 +24,7 @@ fun ExpandableCard(
     painterUpIcon: Painter,
 ) {
     var isExpanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Card(
         modifier = Modifier
@@ -40,13 +43,22 @@ fun ExpandableCard(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_neutral),
-                    contentDescription = null,
+                Text(
+                    fontSize = 24.sp,
+                    text = "1",
                     modifier = Modifier
                         .height(44.dp)
                         .width(52.dp)
-                        .padding(end = 4.dp),
+                        .padding(start = 4.dp, end = 4.dp)
+                        .clickable {
+                            Toast.makeText(
+                                context,
+                                "Click first button",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        .align(Alignment.CenterVertically),
+                    textAlign = TextAlign.Center,
                 )
                 Text(
                     text = nameOfCard,

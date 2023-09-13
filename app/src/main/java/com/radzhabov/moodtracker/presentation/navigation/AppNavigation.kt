@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.radzhabov.moodtracker.domain.screen.Screens
-import com.radzhabov.moodtracker.presentation.home.HomeScreen
+import com.radzhabov.moodtracker.presentation.home.content.HomeScreen
 import com.radzhabov.moodtracker.presentation.settings.SettingsScreen
 import com.radzhabov.moodtracker.presentation.stats.StatsScreen
 import com.radzhabov.moodtracker.domain.weather.WeatherState

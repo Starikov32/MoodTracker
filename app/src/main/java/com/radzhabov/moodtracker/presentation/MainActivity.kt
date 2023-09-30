@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.radzhabov.moodtracker.R
@@ -41,7 +42,6 @@ class MainActivity : ComponentActivity() {
         if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true &&
             permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true
         ) {
-            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
             requestLocation()
         } else {
             Toast.makeText(
@@ -51,21 +51,36 @@ class MainActivity : ComponentActivity() {
             ).show()
         }
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidThreeTen.init(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        permissionLauncher.launch(
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
+        if (hasLocationPermissions()) {
+            requestLocation()
+        } else {
+            permissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                )
             )
-        )
+        }
+
         setupUserInterface()
     }
+
+    private fun hasLocationPermissions(): Boolean {
+        return (ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED)
+    }
+
 
     private fun setupUserInterface() {
         setContent {
@@ -97,34 +112,38 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            return
-        }
-        fusedLocationClient.requestLocationUpdates(
-            LocationRequest.create(),
-            object : LocationCallback() {
-                fun onLocationResult() {
+        if (hasLocationPermissions()) {
+            val locationCallback = object : LocationCallback() {
+                override fun onLocationResult(locationResult: LocationResult) {
+                    super.onLocationResult(locationResult)
                     requestLocation()
                 }
-            },
-            Looper.getMainLooper())
+            }
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                return
+            }
+            fusedLocationClient.requestLocationUpdates(
+                LocationRequest.create(),
+                locationCallback,
+                Looper.getMainLooper()
+            )
+        }
     }
 
     private fun requestLocation() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    location?.let {
+                    if (location != null) {
                         val latitude = location.latitude
                         val longitude = location.longitude
-
                         weatherViewModel.loadWeatherInfo(latitude, longitude)
                     }
                 }.addOnFailureListener {

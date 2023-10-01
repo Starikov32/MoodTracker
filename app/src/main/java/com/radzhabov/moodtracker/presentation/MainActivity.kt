@@ -51,6 +51,7 @@ class MainActivity : ComponentActivity() {
             ).show()
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidThreeTen.init(this)
@@ -67,20 +68,13 @@ class MainActivity : ComponentActivity() {
                 )
             )
         }
-
         setupUserInterface()
     }
 
-    private fun hasLocationPermissions(): Boolean {
-        return (ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-            this,
-            Manifest.permission.ACCESS_COARSE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED)
+    override fun onResume() {
+        super.onResume()
+        startLocationUpdates()
     }
-
 
     private fun setupUserInterface() {
         setContent {
@@ -106,9 +100,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        startLocationUpdates()
+    private fun hasLocationPermissions(): Boolean {
+        return (ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED)
     }
 
     private fun startLocationUpdates() {

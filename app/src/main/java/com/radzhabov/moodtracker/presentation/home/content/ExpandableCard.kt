@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.presentation.home
+package com.radzhabov.moodtracker.presentation.home.content
 
 import android.content.Context
 import android.widget.Toast
@@ -13,9 +13,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.presentation.home.animation.AnimationCard
 
 @Composable
@@ -52,11 +55,13 @@ fun ExpandableCard(
                         .width(52.dp)
                         .padding(start = 4.dp, end = 4.dp)
                         .clickable {
-                            Toast.makeText(
-                                context,
-                                "Click first button",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast
+                                .makeText(
+                                    context,
+                                    "Click first button",
+                                    Toast.LENGTH_SHORT
+                                )
+                                .show()
                         }
                         .align(Alignment.CenterVertically),
                     textAlign = TextAlign.Center,
@@ -77,7 +82,17 @@ fun ExpandableCard(
                     )
                 }
             }
-            AnimationCard(isExpanded = isExpanded)
+            AnimationCard(isExpanded, context)
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ExpandableCardPreview() {
+    val nameOfCard = "Еда"
+    val painterUpIcon = painterResource(id = R.drawable.ic_up)
+    val painterDownIcon = painterResource(id = R.drawable.ic_down)
+
+    ExpandableCard(nameOfCard, painterDownIcon, painterUpIcon, LocalContext.current)
 }

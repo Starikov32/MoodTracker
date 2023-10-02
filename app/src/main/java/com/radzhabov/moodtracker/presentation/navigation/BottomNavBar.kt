@@ -1,5 +1,6 @@
 package com.radzhabov.moodtracker.presentation.navigation
 
+import android.content.Context
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.NavigationBar
@@ -34,6 +35,7 @@ fun BottomNavBar(
     date: String,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
+    context: Context,
 ) {
     var selectedScreen by remember { mutableIntStateOf(0) }
     val snackBarHostState = remember { SnackbarHostState() }
@@ -64,7 +66,7 @@ fun BottomNavBar(
         }
     ) { innerPadding ->
         when (selectedScreen) {
-            0 -> HomeScreen(weatherState, date, painterDownIcon, painterUpIcon)
+            0 -> HomeScreen(weatherState, date, painterDownIcon, painterUpIcon, context)
             1 -> StatsScreen()
             2 -> SettingsScreen(innerPadding)
         }

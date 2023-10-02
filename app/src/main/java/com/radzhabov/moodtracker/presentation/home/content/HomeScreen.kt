@@ -1,5 +1,6 @@
 package com.radzhabov.moodtracker.presentation.home.content
 
+import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,6 +19,7 @@ fun HomeScreen(
     date: String,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
+    context: Context
 ) {
     weatherState.weatherInfo?.currentWeatherData?.let { data ->
         Card {
@@ -33,7 +35,7 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.padding(5.dp))
 
-                HomeContentCard(painterDownIcon, painterUpIcon)
+                HomeContentCard(painterDownIcon, painterUpIcon, context)
 
             }
         }

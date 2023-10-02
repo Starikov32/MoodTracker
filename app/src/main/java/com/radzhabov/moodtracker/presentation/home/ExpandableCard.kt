@@ -1,5 +1,6 @@
 package com.radzhabov.moodtracker.presentation.home
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -22,9 +23,9 @@ fun ExpandableCard(
     nameOfCard: String,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
+    context: Context
 ) {
     var isExpanded by remember { mutableStateOf(false) }
-    val context = LocalContext.current
 
     Card(
         modifier = Modifier

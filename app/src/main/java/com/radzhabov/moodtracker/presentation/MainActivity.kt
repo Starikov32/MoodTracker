@@ -13,6 +13,7 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -87,6 +88,7 @@ class MainActivity : ComponentActivity() {
                 val painterUpIcon = painterResource(id = R.drawable.ic_up)
                 val padding = PaddingValues()
                 val weatherState by weatherViewModel.state.collectAsState()
+                val context = LocalContext.current
 
                 AppNavigation(
                     navController = navController,
@@ -95,6 +97,7 @@ class MainActivity : ComponentActivity() {
                     painterDownIcon = painterDownIcon,
                     painterUpIcon = painterUpIcon,
                     padding = padding,
+                    context = context,
                 )
             }
         }

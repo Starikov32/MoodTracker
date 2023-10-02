@@ -1,30 +1,30 @@
 package com.radzhabov.moodtracker.presentation.home.animation
 
-import android.widget.Toast
+import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.radzhabov.moodtracker.presentation.home.content.EmotionQuotient
 
 @Composable
 fun AnimationCard(
     isExpanded: Boolean,
+    context: Context,
 ) {
-    val context = LocalContext.current
-
     AnimatedVisibility(
         visible = isExpanded,
         modifier = Modifier.padding(start = 5.dp),
@@ -35,81 +35,55 @@ fun AnimationCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Text(
-                text = "1",
-                modifier = Modifier
-                    .height(44.dp)
-                    .width(52.dp)
-                    .padding(start = 4.dp, end = 4.dp)
-                    .clickable {
-                        Toast.makeText(
-                            context,
-                            "Click 1 button",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
+
+            EmotionQuotient(
+                "1",
+                4,
+                4,
+                context,
+                "1"
             )
 
-            Text(
-                text = "2",
-                modifier = Modifier
-                    .height(44.dp)
-                    .width(52.dp)
-                    .padding(end = 4.dp)
-                    .clickable {
-                        Toast.makeText(
-                            context,
-                            "Click 2 button",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
+            EmotionQuotient(
+                "2",
+                0,
+                4,
+                context,
+                "2"
             )
 
-            Text(
-                text = "3",
-                modifier = Modifier
-                    .height(44.dp)
-                    .width(52.dp)
-                    .padding(end = 4.dp)
-                    .clickable {
-                        Toast.makeText(
-                            context,
-                            "Click 3 button",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
+            EmotionQuotient(
+                "3",
+                0,
+                4,
+                context,
+                "3"
             )
 
-            Text(
-                text = "4",
-                modifier = Modifier
-                    .height(44.dp)
-                    .width(52.dp)
-                    .padding(end = 4.dp)
-                    .clickable {
-                        Toast.makeText(
-                            context,
-                            "Click 4 button",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
+            EmotionQuotient(
+                "4",
+                0,
+                4,
+                context,
+                "4"
             )
 
-            Text(
-                text = "5",
-                modifier = Modifier
-                    .height(44.dp)
-                    .width(52.dp)
-                    .padding(end = 4.dp)
-                    .clickable {
-                        Toast.makeText(
-                            context,
-                            "Click 5 button",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
+            EmotionQuotient(
+                "5",
+                0,
+                4,
+                context,
+                "5"
             )
 
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun AnimationCardPreview(){
+    val isExpanded by remember { mutableStateOf(false) }
+
+    AnimationCard(isExpanded, LocalContext.current)
 }

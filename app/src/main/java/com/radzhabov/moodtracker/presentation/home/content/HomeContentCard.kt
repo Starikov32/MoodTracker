@@ -26,10 +26,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.radzhabov.moodtracker.R
+import com.radzhabov.moodtracker.domain.screen.Screens
 
 @Composable
 fun HomeContentCard(
+    navController: NavController,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
     context: Context
@@ -42,9 +46,9 @@ fun HomeContentCard(
     ) {
         Column {
             Button(
-                onClick = {  },
+                onClick = { navController.navigate(Screens.EditHomeContentScreen.route) },
                 modifier = Modifier
-                    .padding(end = 8.dp, top = 8.dp)
+                    .padding(end = 16.dp, top = 8.dp)
                     .align(Alignment.End),
             ) {
                 Icon(
@@ -73,11 +77,11 @@ fun HomeContentCard(
                 textAlign = TextAlign.Center,
             )
 
-            ExpandableCard("Еда", painterDownIcon, painterUpIcon, context)
+            MoodFactors("Еда", context)
 
-            ExpandableCard("Сон", painterDownIcon, painterUpIcon, context)
+            MoodFactors("Сон", context)
 
-            ExpandableCard("Здоровье", painterDownIcon, painterUpIcon, context)
+            MoodFactors("Здоровье", context)
 
         }
     }
@@ -86,8 +90,9 @@ fun HomeContentCard(
 @Preview(showBackground = true)
 @Composable
 fun HomeContentCardPreview() {
+    val navController = rememberNavController()
     val painterUpIcon = painterResource(id = R.drawable.ic_up)
     val painterDownIcon = painterResource(id = R.drawable.ic_down)
 
-    HomeContentCard(painterDownIcon, painterUpIcon, LocalContext.current)
+    HomeContentCard(navController, painterDownIcon, painterUpIcon, LocalContext.current)
 }

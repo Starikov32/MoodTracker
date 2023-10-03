@@ -82,7 +82,7 @@ class MainActivity : ComponentActivity() {
             MoodTrackerTheme {
                 val navController = rememberNavController()
                 val currentDate = LocalDateTime.now()
-                val formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy; HH:mm")
+                val formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy, HH:mm")
                 val formattedDate = currentDate.format(formatter)
                 val painterDownIcon = painterResource(id = R.drawable.ic_down)
                 val painterUpIcon = painterResource(id = R.drawable.ic_up)
@@ -140,7 +140,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun requestLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     if (location != null) {

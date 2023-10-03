@@ -1,6 +1,7 @@
 package com.radzhabov.moodtracker.presentation.home.content
 
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -21,10 +22,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.radzhabov.moodtracker.R
+import com.radzhabov.moodtracker.domain.screen.Screens
 
 @Composable
-fun EditHomeContent(
+fun EditHomeContentScreen(
+    navController: NavController,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
     context: Context
@@ -37,7 +42,7 @@ fun EditHomeContent(
     ) {
         Column {
             Button(
-                onClick = {  },
+                onClick = { navController.navigate(Screens.Home.route) },
                 modifier = Modifier
                     .padding(end = 16.dp, top = 8.dp)
                     .align(Alignment.End),
@@ -55,7 +60,13 @@ fun EditHomeContent(
             ExpandableCard("Здоровье", painterDownIcon, painterUpIcon, context)
 
             Button(
-                onClick = {  },
+                onClick = {
+                    Toast.makeText(
+                        context,
+                        "Save button is worked",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },
                 modifier = Modifier
                     .padding(top = 8.dp)
                     .align(Alignment.CenterHorizontally),
@@ -75,8 +86,9 @@ fun EditHomeContent(
 @Preview(showBackground = true)
 @Composable
 fun EditHomeContentPreview() {
+    val navController = rememberNavController()
     val painterUpIcon = painterResource(id = R.drawable.ic_up)
     val painterDownIcon = painterResource(id = R.drawable.ic_down)
 
-    EditHomeContent(painterDownIcon, painterUpIcon, LocalContext.current)
+    EditHomeContentScreen(navController, painterDownIcon, painterUpIcon, LocalContext.current)
 }

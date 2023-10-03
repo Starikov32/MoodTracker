@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.radzhabov.moodtracker.domain.weather.WeatherState
 import com.radzhabov.moodtracker.presentation.home.weather.WeatherCard
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     weatherState: WeatherState,
     date: String,
     painterDownIcon: Painter,
@@ -35,7 +37,7 @@ fun HomeScreen(
 
                 Spacer(modifier = Modifier.padding(5.dp))
 
-                HomeContentCard(painterDownIcon, painterUpIcon, context)
+                HomeContentCard(navController, painterDownIcon, painterUpIcon, context)
 
             }
         }

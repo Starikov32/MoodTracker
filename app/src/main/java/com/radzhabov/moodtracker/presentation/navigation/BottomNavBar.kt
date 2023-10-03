@@ -66,7 +66,8 @@ fun BottomNavBar(
         }
     ) { innerPadding ->
         when (selectedScreen) {
-            0 -> HomeScreen(weatherState, date, painterDownIcon, painterUpIcon, context)
+            0 -> HomeScreen(navController, weatherState, date,
+                painterDownIcon, painterUpIcon, context)
             1 -> StatsScreen()
             2 -> SettingsScreen(innerPadding)
         }

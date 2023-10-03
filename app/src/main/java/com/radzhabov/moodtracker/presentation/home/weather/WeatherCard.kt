@@ -49,7 +49,6 @@ fun WeatherCard(
                 Text(
                     style = MaterialTheme.typography.titleSmall,
                     text = date,
-                    color = Color.Black,
                 )
 
                 Spacer(modifier = Modifier.padding(4.dp))
@@ -57,7 +56,6 @@ fun WeatherCard(
                 Text(
                     text = stringResource(R.string.weather_city),
                     style = MaterialTheme.typography.titleSmall,
-                    color = Color.Black,
                 )
             }
 
@@ -78,7 +76,6 @@ fun WeatherCard(
                 style = MaterialTheme.typography.titleLarge,
                 text = "$temperatureCelsius°C",
                 fontSize = 24.sp,
-                color = Color.Black,
             )
         }
     }

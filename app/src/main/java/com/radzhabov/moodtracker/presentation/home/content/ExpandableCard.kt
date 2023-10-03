@@ -70,7 +70,6 @@ fun ExpandableCard(
                     text = nameOfCard,
                     style = MaterialTheme.typography.titleLarge,
                     modifier = Modifier.padding(start = 5.dp),
-                    color = Color.Black
                 )
                 Button(
                     onClick = { isExpanded = !isExpanded },

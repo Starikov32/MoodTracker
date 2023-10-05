@@ -11,8 +11,12 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.core.app.ActivityCompat
@@ -25,6 +29,7 @@ import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.radzhabov.moodtracker.R
+import com.radzhabov.moodtracker.domain.screen.Screen
 import com.radzhabov.moodtracker.presentation.navigation.AppNavigation
 import com.radzhabov.moodtracker.presentation.theme.MoodTrackerTheme
 import com.radzhabov.moodtracker.presentation.viewmodel.WeatherViewModel
@@ -80,6 +85,7 @@ class MainActivity : ComponentActivity() {
     private fun setupUserInterface() {
         setContent {
             MoodTrackerTheme {
+                val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 val navController = rememberNavController()
                 val currentDate = LocalDateTime.now()
                 val formatter = DateTimeFormatter.ofPattern("dd.LL.yyyy, HH:mm")
@@ -89,15 +95,24 @@ class MainActivity : ComponentActivity() {
                 val padding = PaddingValues()
                 val weatherState by weatherViewModel.state.collectAsState()
                 val context = LocalContext.current
+                val isExpanded by remember { mutableStateOf(false) }
+                val screens: List<Screen> = listOf(
+                    Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
+                    Screen(label = "Stats", icon = painterResource(R.drawable.ic_stats)),
+                    Screen(label = "Settings", icon = painterResource(R.drawable.ic_settings))
+                )
 
                 AppNavigation(
-                    navController = navController,
-                    weatherState = weatherState,
-                    date = formattedDate,
-                    painterDownIcon = painterDownIcon,
-                    painterUpIcon = painterUpIcon,
-                    padding = padding,
-                    context = context,
+                    snackBarHostState,
+                    screens,
+                    navController,
+                    weatherState,
+                    formattedDate,
+                    painterDownIcon,
+                    painterUpIcon,
+                    padding,
+                    context,
+                    isExpanded
                 )
             }
         }

@@ -16,10 +16,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -34,9 +36,8 @@ import com.radzhabov.moodtracker.domain.screen.Screens
 @Composable
 fun HomeContentCard(
     navController: NavController,
-    painterDownIcon: Painter,
-    painterUpIcon: Painter,
-    context: Context
+    context: Context,
+    isExpend: Boolean,
 ) {
     Card(
         modifier = Modifier
@@ -44,7 +45,9 @@ fun HomeContentCard(
             .shadow(elevation = 8.dp),
         shape = RoundedCornerShape(size = 15.dp),
     ) {
-        Column {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
             Button(
                 onClick = { navController.navigate(Screens.EditHomeContentScreen.route) },
                 modifier = Modifier
@@ -77,11 +80,11 @@ fun HomeContentCard(
                 textAlign = TextAlign.Center,
             )
 
-            MoodFactors("Еда", context)
+            MoodFactors("Еда", context, isExpend)
 
-            MoodFactors("Сон", context)
+            MoodFactors("Сон", context, isExpend)
 
-            MoodFactors("Здоровье", context)
+            MoodFactors("Здоровье", context, isExpend)
 
         }
     }
@@ -91,8 +94,8 @@ fun HomeContentCard(
 @Composable
 fun HomeContentCardPreview() {
     val navController = rememberNavController()
-    val painterUpIcon = painterResource(id = R.drawable.ic_up)
-    val painterDownIcon = painterResource(id = R.drawable.ic_down)
+    val isExpanded by remember { mutableStateOf(false) }
 
-    HomeContentCard(navController, painterDownIcon, painterUpIcon, LocalContext.current)
+
+    HomeContentCard(navController, LocalContext.current, isExpanded)
 }

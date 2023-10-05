@@ -9,10 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -20,15 +17,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.radzhabov.moodtracker.R
-import com.radzhabov.moodtracker.presentation.home.animation.AnimationCard
 
 @Composable
 fun MoodFactors(
     nameOfCard: String,
-    context: Context
+    context: Context,
+    isExpend:Boolean,
 ) {
-    var isExpanded by remember { mutableStateOf(false) }
-
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -73,8 +68,9 @@ fun MoodFactors(
 @Composable
 fun MoodFactorsPreview() {
     val nameOfCard = "Еда"
+    val isExpanded by remember { mutableStateOf(false) }
     val painterUpIcon = painterResource(id = R.drawable.ic_up)
     val painterDownIcon = painterResource(id = R.drawable.ic_down)
 
-    MoodFactors(nameOfCard, LocalContext.current)
+    MoodFactors(nameOfCard, LocalContext.current, isExpanded)
 }

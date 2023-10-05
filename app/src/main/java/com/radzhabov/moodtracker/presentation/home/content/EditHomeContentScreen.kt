@@ -32,7 +32,7 @@ fun EditHomeContentScreen(
     navController: NavController,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
-    context: Context
+    context: Context,
 ) {
     Card(
         modifier = Modifier
@@ -42,7 +42,7 @@ fun EditHomeContentScreen(
     ) {
         Column {
             Button(
-                onClick = { navController.navigate(Screens.Home.route) },
+                onClick = { navController.navigate(Screens.BottomNavBar.route) },
                 modifier = Modifier
                     .padding(end = 16.dp, top = 8.dp)
                     .align(Alignment.End),

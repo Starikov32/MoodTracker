@@ -30,6 +30,7 @@ import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.screen.Screen
+import com.radzhabov.moodtracker.presentation.home.bottomsheet.BottomSheetScreen
 import com.radzhabov.moodtracker.presentation.navigation.AppNavigation
 import com.radzhabov.moodtracker.presentation.theme.MoodTrackerTheme
 import com.radzhabov.moodtracker.presentation.viewmodel.WeatherViewModel
@@ -102,18 +103,19 @@ class MainActivity : ComponentActivity() {
                     Screen(label = "Settings", icon = painterResource(R.drawable.ic_settings))
                 )
 
-                AppNavigation(
-                    snackBarHostState,
-                    screens,
-                    navController,
-                    weatherState,
-                    formattedDate,
-                    painterDownIcon,
-                    painterUpIcon,
-                    padding,
-                    context,
-                    isExpanded
-                )
+//                AppNavigation(
+//                    snackBarHostState,
+//                    screens,
+//                    navController,
+//                    weatherState,
+//                    formattedDate,
+//                    painterDownIcon,
+//                    painterUpIcon,
+//                    padding,
+//                    context,
+//                    isExpanded,
+//                )
+                BottomSheetScreen()
             }
         }
     }

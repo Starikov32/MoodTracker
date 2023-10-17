@@ -22,7 +22,6 @@ import com.radzhabov.moodtracker.R
 fun MoodFactors(
     nameOfCard: String,
     context: Context,
-    isExpend:Boolean,
 ) {
     Card(
         modifier = Modifier
@@ -62,15 +61,4 @@ fun MoodFactors(
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MoodFactorsPreview() {
-    val nameOfCard = "Еда"
-    val isExpanded by remember { mutableStateOf(false) }
-    val painterUpIcon = painterResource(id = R.drawable.ic_up)
-    val painterDownIcon = painterResource(id = R.drawable.ic_down)
-
-    MoodFactors(nameOfCard, LocalContext.current, isExpanded)
 }

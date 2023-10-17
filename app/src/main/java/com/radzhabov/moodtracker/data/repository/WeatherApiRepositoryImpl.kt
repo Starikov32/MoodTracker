@@ -16,9 +16,8 @@ import javax.inject.Singleton
 class WeatherApiRepositoryImpl @Inject constructor(
     private val api: WeatherApi,
 ) : WeatherApiRepository {
-
-    override fun getWeatherData(lat: Double, long: Double): Flow<Resource<WeatherInfo>> = flow<Resource<WeatherInfo>> {
-
+    override fun getWeatherData(lat: Double, long: Double): Flow<Resource<WeatherInfo>> =
+        flow<Resource<WeatherInfo>> {
         try {
             val weatherData = api.getWeatherData(lat = lat, long = long).toWeatherInfo()
             emit(Resource.Success(data = weatherData))
@@ -27,6 +26,4 @@ class WeatherApiRepositoryImpl @Inject constructor(
             emit(Resource.Error(message = e.message ?: "Произошла неизвестная ошибка"))
         }
     }.flowOn(Dispatchers.IO)
-
-
 }

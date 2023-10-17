@@ -33,49 +33,8 @@ fun AnimationCard(
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-
-            EmotionQuotient(
-                "1",
-                4,
-                4,
-                context,
-                "1"
-            )
-
-            EmotionQuotient(
-                "2",
-                0,
-                4,
-                context,
-                "2"
-            )
-
-            EmotionQuotient(
-                "3",
-                0,
-                4,
-                context,
-                "3"
-            )
-
-            EmotionQuotient(
-                "4",
-                0,
-                4,
-                context,
-                "4"
-            )
-
-            EmotionQuotient(
-                "5",
-                0,
-                4,
-                context,
-                "5"
-            )
-
+            EmotionQuotient()
         }
     }
 }

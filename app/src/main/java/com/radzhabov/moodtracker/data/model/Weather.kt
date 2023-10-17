@@ -10,9 +10,4 @@ data class Weather(
     val windSpeed: Double,
     val humidity: Double,
     val weatherType: WeatherType,
-) {
-    companion object{
-        fun defaultWeather() = Weather(time = LocalDateTime.now(), temperatureCelsius = 0.0,
-            pressure = 0.0, windSpeed = 0.0, humidity = 0.0, weatherType = WeatherType.Sunny)
-    }
-}
+)

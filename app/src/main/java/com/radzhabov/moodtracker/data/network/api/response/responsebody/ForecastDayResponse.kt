@@ -1,0 +1,9 @@
+package com.example.weatherapp.data.model.response.responsebody
+
+import com.google.gson.annotations.SerializedName
+
+data class ForecastDayResponse(
+    @SerializedName("date") val date: String? = null,
+    @SerializedName("day") val day: DayResponse? = null,
+    @SerializedName("hour") val hour: List<HourResponse>? = null
+)

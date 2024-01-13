@@ -17,10 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.screen.Screens
 
 class HomeContentCard(
@@ -68,11 +70,11 @@ class HomeContentCard(
                     textAlign = TextAlign.Center,
                 )
 
-                MoodFactors("Еда", context)
+                MoodFactors(stringResource(R.string.eat), context)
 
-                MoodFactors("Сон", context)
+                MoodFactors(stringResource(R.string.sleep), context)
 
-                MoodFactors("Здоровье", context)
+                MoodFactors(stringResource(R.string.health), context)
 
             }
         }

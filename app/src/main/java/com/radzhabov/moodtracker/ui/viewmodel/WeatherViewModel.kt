@@ -3,7 +3,7 @@ package com.radzhabov.moodtracker.ui.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
-import com.radzhabov.moodtracker.domain.repository.WeatherApiRepository
+import com.radzhabov.moodtracker.domain.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherViewModel @Inject constructor(
-    private val weatherRepository: WeatherApiRepository,
+    private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
     private val _currentWeatherState = MutableStateFlow<CurrentWeatherCardModel?>(null)

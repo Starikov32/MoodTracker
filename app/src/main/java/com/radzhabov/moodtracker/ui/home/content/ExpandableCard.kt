@@ -80,7 +80,7 @@ fun ExpandableCard(
                     )
                 }
             }
-            AnimationCard(isExpanded, context)
+            AnimationCard(isExpanded)
         }
     }
 }

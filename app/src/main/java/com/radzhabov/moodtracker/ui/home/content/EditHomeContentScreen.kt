@@ -18,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.screen.Screens
 
 @Composable
@@ -47,11 +49,11 @@ fun EditHomeContentScreen(
                 )
             }
 
-            ExpandableCard("Еда", painterDownIcon, painterUpIcon, context)
+            ExpandableCard(stringResource(R.string.eat), painterDownIcon, painterUpIcon, context)
 
-            ExpandableCard("Сон", painterDownIcon, painterUpIcon, context)
+            ExpandableCard(stringResource(R.string.sleep), painterDownIcon, painterUpIcon, context)
 
-            ExpandableCard("Здоровье", painterDownIcon, painterUpIcon, context)
+            ExpandableCard(stringResource(R.string.health), painterDownIcon, painterUpIcon, context)
 
             Button(
                 onClick = {

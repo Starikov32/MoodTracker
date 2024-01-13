@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MoodTracker</string>
     <string name="weather_city">Кирово-Чепецк</string>
+    <string name="eat">Еда</string>
+    <string name="sleep">Сон</string>
+    <string name="health">Здоровье</string>
 </resources>

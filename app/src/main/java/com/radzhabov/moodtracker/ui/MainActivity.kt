@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.radzhabov.moodtracker.R
+import com.radzhabov.moodtracker.data.db.AppDatabase
 import com.radzhabov.moodtracker.domain.screen.Screen
 import com.radzhabov.moodtracker.ui.location.LocationManager
 import com.radzhabov.moodtracker.ui.navigation.AppNavigation
@@ -37,6 +38,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppDatabase.initialize(this)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationManager = LocationManager(fusedLocationClient,this)

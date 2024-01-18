@@ -15,7 +15,7 @@ import com.radzhabov.moodtracker.domain.screen.Screens
 import com.radzhabov.moodtracker.ui.home.content.HomeScreen
 import com.radzhabov.moodtracker.ui.settings.SettingsScreen
 import com.radzhabov.moodtracker.ui.stats.StatsScreen
-import com.radzhabov.moodtracker.ui.home.content.EditHomeContentScreen
+import com.radzhabov.moodtracker.ui.home.content.edit.EditHomeContentScreen
 
 @Composable
 fun AppNavigation(

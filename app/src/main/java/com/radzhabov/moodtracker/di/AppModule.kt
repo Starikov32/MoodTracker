@@ -8,7 +8,7 @@ import com.radzhabov.moodtracker.data.db.AppDatabase
 import com.radzhabov.moodtracker.data.db.dao.MoodDao
 import com.radzhabov.moodtracker.data.network.api.WeatherApi
 import com.radzhabov.moodtracker.data.network.service.NetworkService
-import com.radzhabov.moodtracker.data.repository.WeatherApiRepositoryImpl
+import com.radzhabov.moodtracker.data.repositories.WeatherApiRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

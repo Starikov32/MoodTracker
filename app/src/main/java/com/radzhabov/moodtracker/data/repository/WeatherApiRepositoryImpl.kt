@@ -14,7 +14,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class WeatherApiRepository @Inject constructor(
+class WeatherApiRepositoryImpl @Inject constructor(
     private val weatherApi: WeatherApi,
 ) {
     fun getWeatherData(city: String) = flow {

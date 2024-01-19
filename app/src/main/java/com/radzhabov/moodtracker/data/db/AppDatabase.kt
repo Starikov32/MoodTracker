@@ -9,7 +9,6 @@ import com.radzhabov.moodtracker.data.db.entities.MoodEntity
 
 @Database(
     version = 1,
-    exportSchema = false,
     entities = [MoodEntity::class]
 )
 abstract class AppDatabase: RoomDatabase() {
@@ -18,15 +17,17 @@ abstract class AppDatabase: RoomDatabase() {
     companion object {
         private var instance: AppDatabase? = null
 
-        fun getInstance(context: Context): AppDatabase {
-            return instance ?: synchronized(this) {
-                instance ?: Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "app_database"
-                ).build().also { instance = it }
-            }
-
+        fun getInstance(context: Context) = instance ?: synchronized(this) {
+            instance ?: buildDatabase(context).also { instance = it }
         }
+
+        private fun buildDatabase(context: Context): AppDatabase {
+            return Room.databaseBuilder(
+                context.applicationContext,
+                AppDatabase::class.java,
+                "app_database"
+            ).fallbackToDestructiveMigration().build()
+        }
+
     }
 }

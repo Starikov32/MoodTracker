@@ -9,10 +9,10 @@ import com.radzhabov.moodtracker.data.db.entities.MoodEntity
 @Dao
 interface MoodDao {
 
+    @Insert
+    suspend fun insertMoodCriteria(moodEntity: MoodEntity)
+
     @Transaction
     @Query("SELECT * FROM mood WHERE name = :name")
     suspend fun getMood(name: String): MoodEntity?
-
-    @Insert
-    suspend fun insertMoodCriteria(moodEntity: MoodEntity)
 }

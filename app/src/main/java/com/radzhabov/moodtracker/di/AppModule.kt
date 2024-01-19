@@ -6,7 +6,9 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.radzhabov.moodtracker.data.db.AppDatabase
 import com.radzhabov.moodtracker.data.db.dao.MoodDao
+import com.radzhabov.moodtracker.data.network.api.WeatherApi
 import com.radzhabov.moodtracker.data.network.service.NetworkService
+import com.radzhabov.moodtracker.data.repository.WeatherApiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,4 +44,8 @@ object AppModule {
     fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient {
         return LocationServices.getFusedLocationProviderClient(app)
     }
+
+    @Provides
+    @Singleton
+    fun provideWeatherApiRepository(weatherApi: WeatherApi) = WeatherApiRepository(weatherApi)
 }

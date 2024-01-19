@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.ui.home.content
+package com.radzhabov.moodtracker.ui.home.content.edit
 
 import android.content.Context
 import android.widget.Toast
@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.screen.Screens
+import com.radzhabov.moodtracker.ui.home.content.ExpandableCard
 
 @Composable
 fun EditHomeContentScreen(

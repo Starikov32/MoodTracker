@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.data.repository
+package com.radzhabov.moodtracker.data.repositories
 
 import com.radzhabov.moodtracker.data.db.dao.MoodDao
 import com.radzhabov.moodtracker.data.dto.Mood

@@ -1,9 +1,10 @@
-package com.radzhabov.moodtracker.data.repository
+package com.radzhabov.moodtracker.data.repositories
 
 import com.radzhabov.moodtracker.data.mapper.toCurrentCardWeather
 import com.radzhabov.moodtracker.data.network.api.WeatherApi
 import com.radzhabov.moodtracker.data.network.api.response.WeatherResponse
 import com.radzhabov.moodtracker.data.network.service.NetworkService.Companion.handleCall
+import com.radzhabov.moodtracker.domain.repositories.WeatherApiRepository
 import com.radzhabov.moodtracker.domain.util.Constants.Companion.ALERTS
 import com.radzhabov.moodtracker.domain.util.Constants.Companion.API_KEY
 import com.radzhabov.moodtracker.domain.util.Constants.Companion.AQI
@@ -16,8 +17,8 @@ import javax.inject.Singleton
 @Singleton
 class WeatherApiRepositoryImpl @Inject constructor(
     private val weatherApi: WeatherApi,
-) {
-    fun getWeatherData(city: String) = flow {
+): WeatherApiRepository {
+    override fun getWeatherData(city: String) = flow {
         val call = weatherApi.getWeatherForecast(API_KEY, city, 1, AQI, ALERTS)
         val response: WeatherResponse? = handleCall(call)
         val currentWeatherCardModel = response?.toCurrentCardWeather()

@@ -20,9 +20,9 @@ class NetworkService private constructor() {
         get() = retrofit.create(WeatherApi::class.java)
 
     companion object {
+        private const val URL_API = "https://api.weatherapi.com/v1/"
         private const val EXCEPTION = "Api returns nothing"
         private const val LOG_TAG = "NetworkService"
-        const val URL_API = "https://api.open-meteo.com/"
 
         @Volatile
         private var instance: NetworkService? = null

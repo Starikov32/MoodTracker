@@ -1,6 +1,7 @@
-package com.example.weatherapp.data.model.response.responsebody
+package com.radzhabov.moodtracker.data.network.api.response.responsebody
 
 import com.google.gson.annotations.SerializedName
+import com.radzhabov.moodtracker.data.network.api.response.responsebody.Condition
 
 data class HourResponse(
     @SerializedName("time") val time: String? = null,

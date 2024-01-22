@@ -1,5 +1,6 @@
-package com.example.weatherapp.data.model.response.responsebody
+package com.radzhabov.moodtracker.data.network.api.response.responsebody
 
+import com.example.weatherapp.data.model.response.responsebody.DayResponse
 import com.google.gson.annotations.SerializedName
 
 data class ForecastDayResponse(

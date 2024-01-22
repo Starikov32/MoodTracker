@@ -1,4 +1,4 @@
-package com.example.weatherapp.data.model.response.responsebody
+package com.radzhabov.moodtracker.data.network.api.response.responsebody
 
 import com.google.gson.annotations.SerializedName
 

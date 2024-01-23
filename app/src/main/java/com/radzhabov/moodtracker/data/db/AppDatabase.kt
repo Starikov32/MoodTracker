@@ -9,6 +9,7 @@ import com.radzhabov.moodtracker.data.db.entities.MoodEntity
 
 @Database(
     version = 1,
+    exportSchema = false,
     entities = [MoodEntity::class]
 )
 abstract class AppDatabase: RoomDatabase() {

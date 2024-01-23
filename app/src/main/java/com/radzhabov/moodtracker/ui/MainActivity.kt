@@ -24,6 +24,7 @@ import com.radzhabov.moodtracker.domain.screen.Screen
 import com.radzhabov.moodtracker.ui.location.LocationManager
 import com.radzhabov.moodtracker.ui.navigation.AppNavigation
 import com.radzhabov.moodtracker.ui.theme.MoodTrackerTheme
+import com.radzhabov.moodtracker.ui.viewmodel.MoodViewModel
 import com.radzhabov.moodtracker.ui.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +33,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var resultLauncher: ActivityResultLauncher<String>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val weatherViewModel: WeatherViewModel by viewModels()
+    private val moodViewModel: MoodViewModel by viewModels()
     private lateinit var locationManager: LocationManager
 
 
@@ -63,6 +65,7 @@ class MainActivity : ComponentActivity() {
                     screens,
                     navController,
                     weatherState,
+                    moodViewModel,
                     painterDownIcon,
                     painterUpIcon,
                     padding,

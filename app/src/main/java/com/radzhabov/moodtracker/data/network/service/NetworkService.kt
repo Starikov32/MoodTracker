@@ -2,9 +2,6 @@ package com.radzhabov.moodtracker.data.network.service
 
 import android.util.Log
 import com.radzhabov.moodtracker.data.network.api.WeatherApi
-import com.radzhabov.moodtracker.domain.util.Constants.Companion.EXCEPTION
-import com.radzhabov.moodtracker.domain.util.Constants.Companion.LOG_TAG
-import com.radzhabov.moodtracker.domain.util.Constants.Companion.URL_API
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
@@ -23,6 +20,9 @@ class NetworkService private constructor() {
         get() = retrofit.create(WeatherApi::class.java)
 
     companion object {
+        private const val URL_API = "https://api.weatherapi.com/v1/"
+        private const val EXCEPTION = "Api returns nothing"
+        private const val LOG_TAG = "NetworkService"
 
         @Volatile
         private var instance: NetworkService? = null

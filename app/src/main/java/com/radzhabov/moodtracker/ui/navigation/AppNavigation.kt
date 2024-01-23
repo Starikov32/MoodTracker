@@ -16,6 +16,7 @@ import com.radzhabov.moodtracker.ui.home.content.HomeScreen
 import com.radzhabov.moodtracker.ui.settings.SettingsScreen
 import com.radzhabov.moodtracker.ui.stats.StatsScreen
 import com.radzhabov.moodtracker.ui.home.content.edit.EditHomeContentScreen
+import com.radzhabov.moodtracker.ui.viewmodel.MoodViewModel
 
 @Composable
 fun AppNavigation(
@@ -23,12 +24,12 @@ fun AppNavigation(
     screens: List<Screen>,
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
+    moodViewModel: MoodViewModel,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
     padding: PaddingValues,
     context: Context,
-
-    ){
+){
     NavHost(
         navController = navController as NavHostController,
         startDestination = Screens.BottomNavBar.route
@@ -47,7 +48,7 @@ fun AppNavigation(
         }
 
         composable(route = Screens.EditHomeContentScreen.route) {
-            EditHomeContentScreen(navController, painterDownIcon, painterUpIcon, context)
+            EditHomeContentScreen(navController, moodViewModel, painterDownIcon, painterUpIcon, context)
         }
 
     }

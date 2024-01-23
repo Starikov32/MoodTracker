@@ -4,4 +4,8 @@
     <string name="eat">Еда</string>
     <string name="sleep">Сон</string>
     <string name="health">Здоровье</string>
+    <string name="music">Музыка</string>
+    <string name="condition_rating">Оцените состояние от 1 до 3</string>
+    <string name="enter_condition">Введите состояние</string>
+    <string name="criteria_editing">Редактирование критериев</string>
 </resources>

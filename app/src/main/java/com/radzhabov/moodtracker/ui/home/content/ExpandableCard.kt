@@ -2,32 +2,40 @@ package com.radzhabov.moodtracker.ui.home.content
 
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.radzhabov.moodtracker.R
-import com.radzhabov.moodtracker.ui.home.animation.AnimationCard
+import com.radzhabov.moodtracker.ui.viewmodel.MoodViewModel
 
 @Composable
 fun ExpandableCard(
     nameOfCard: String,
+    moodViewModel: MoodViewModel,
     painterDownIcon: Painter,
     painterUpIcon: Painter,
     context: Context
 ) {
     var isExpanded by remember { mutableStateOf(false) }
+    var state by remember { mutableIntStateOf(1) }
 
     Card(
         modifier = Modifier
@@ -80,17 +88,35 @@ fun ExpandableCard(
                     )
                 }
             }
-            AnimationCard(isExpanded)
+
+            AnimatedVisibility(
+                visible = isExpanded,
+                modifier = Modifier.padding(start = 5.dp),
+                enter = fadeIn() + expandVertically(),
+                exit = fadeOut() + shrinkVertically()
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    OutlinedTextField(
+                        value = state.toString(),
+                        onValueChange = { newValue ->
+                            state = newValue.toIntOrNull() ?: 0
+                        },
+                        label = { Text(text = stringResource(R.string.condition_rating)) },
+                        placeholder = { Text(text = stringResource(R.string.enter_condition)) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 16.dp, bottom = 13.dp),
+                        shape = RoundedCornerShape(16.dp),
+                        keyboardOptions = KeyboardOptions(
+                            imeAction = ImeAction.Next,
+                            keyboardType = KeyboardType.Number
+                        )
+                    )
+                }
+            }
+
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ExpandableCardPreview() {
-    val nameOfCard = "Еда"
-    val painterUpIcon = painterResource(id = R.drawable.ic_up)
-    val painterDownIcon = painterResource(id = R.drawable.ic_down)
-
-    ExpandableCard(nameOfCard, painterDownIcon, painterUpIcon, LocalContext.current)
 }

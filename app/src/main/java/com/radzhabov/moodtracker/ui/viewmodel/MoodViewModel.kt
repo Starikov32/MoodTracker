@@ -28,6 +28,7 @@ class MoodViewModel @Inject constructor(
             currentMood.value.let {
                 moodRepository.insertMoodCriteria(Mood(name, state))
             }
+            Log.i(LOG_TAG, "ur information is added in DB")
         } catch (e: Exception) {
             val message = "Error executing ViewModel: ${e.localizedMessage}"
             Log.e(LOG_TAG, message)

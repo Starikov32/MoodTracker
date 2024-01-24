@@ -49,8 +49,6 @@ class MainActivity : ComponentActivity() {
             MoodTrackerTheme {
                 val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 val navController = rememberNavController()
-                val painterDownIcon = painterResource(id = R.drawable.ic_down)
-                val painterUpIcon = painterResource(id = R.drawable.ic_up)
                 val padding = PaddingValues()
                 val weatherState by weatherViewModel.currentWeatherState.collectAsState()
                 val context = LocalContext.current
@@ -66,8 +64,6 @@ class MainActivity : ComponentActivity() {
                     navController,
                     weatherState,
                     moodViewModel,
-                    painterDownIcon,
-                    painterUpIcon,
                     padding,
                     context,
                 )

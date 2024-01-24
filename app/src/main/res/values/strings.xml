@@ -8,4 +8,7 @@
     <string name="condition_rating">Оцените состояние от 1 до 3</string>
     <string name="enter_condition">Введите состояние</string>
     <string name="criteria_editing">Редактирование критериев</string>
+
+    <string name="condition_name">Названия состояния</string>
+    <string name="enter_condition_name">Введите название состояние </string>
 </resources>

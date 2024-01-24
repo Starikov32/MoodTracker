@@ -25,8 +25,6 @@ fun AppNavigation(
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
     moodViewModel: MoodViewModel,
-    painterDownIcon: Painter,
-    painterUpIcon: Painter,
     padding: PaddingValues,
     context: Context,
 ){
@@ -48,7 +46,7 @@ fun AppNavigation(
         }
 
         composable(route = Screens.EditHomeContentScreen.route) {
-            EditHomeContentScreen(navController, moodViewModel, painterDownIcon, painterUpIcon, context)
+            EditHomeContentScreen(navController, moodViewModel, context)
         }
 
     }

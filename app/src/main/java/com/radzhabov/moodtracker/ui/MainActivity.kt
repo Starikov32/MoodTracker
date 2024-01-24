@@ -14,17 +14,14 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.radzhabov.moodtracker.R
-import com.radzhabov.moodtracker.domain.screen.Screen
 import com.radzhabov.moodtracker.ui.location.LocationManager
 import com.radzhabov.moodtracker.ui.navigation.AppNavigation
 import com.radzhabov.moodtracker.ui.theme.MoodTrackerTheme
-import com.radzhabov.moodtracker.ui.viewmodel.MoodViewModel
+import com.radzhabov.moodtracker.ui.viewmodel.MoodEditViewModel
+import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 import com.radzhabov.moodtracker.ui.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +30,8 @@ class MainActivity : ComponentActivity() {
     private lateinit var resultLauncher: ActivityResultLauncher<String>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val weatherViewModel: WeatherViewModel by viewModels()
-    private val moodViewModel: MoodViewModel by viewModels()
+    private val moodEditViewModel: MoodEditViewModel by viewModels()
+    private val moodListViewModel: MoodListViewModel by viewModels()
     private lateinit var locationManager: LocationManager
 
 
@@ -51,21 +49,14 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val padding = PaddingValues()
                 val weatherState by weatherViewModel.currentWeatherState.collectAsState()
-                val context = LocalContext.current
-                val screens: List<Screen> = listOf(
-                    Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
-                    Screen(label = "Stats", icon = painterResource(R.drawable.ic_stats)),
-                    Screen(label = "Settings", icon = painterResource(R.drawable.ic_settings))
-                )
 
                 AppNavigation(
                     snackBarHostState,
-                    screens,
                     navController,
                     weatherState,
-                    moodViewModel,
-                    padding,
-                    context,
+                    moodListViewModel,
+                    moodEditViewModel,
+                    padding
                 )
             }
         }

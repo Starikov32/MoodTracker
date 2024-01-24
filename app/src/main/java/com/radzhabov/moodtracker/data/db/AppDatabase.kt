@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.radzhabov.moodtracker.data.db.dao.MoodDao
-import com.radzhabov.moodtracker.data.db.entities.MoodEntity
+import com.radzhabov.moodtracker.data.db.entities.Mood
 
 @Database(
     version = 1,
     exportSchema = false,
-    entities = [MoodEntity::class]
+    entities = [Mood::class]
 )
 abstract class AppDatabase: RoomDatabase() {
     abstract fun moodDao(): MoodDao

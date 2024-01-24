@@ -1,52 +1,67 @@
 package com.radzhabov.moodtracker.ui.navigation
 
-import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
-import com.radzhabov.moodtracker.domain.screen.Screen
-import com.radzhabov.moodtracker.domain.screen.Screens
-import com.radzhabov.moodtracker.ui.home.content.HomeScreen
+import com.radzhabov.moodtracker.domain.util.Routes
+import com.radzhabov.moodtracker.ui.home.HomeScreen
 import com.radzhabov.moodtracker.ui.settings.SettingsScreen
 import com.radzhabov.moodtracker.ui.stats.StatsScreen
-import com.radzhabov.moodtracker.ui.home.content.edit.EditHomeContentScreen
-import com.radzhabov.moodtracker.ui.viewmodel.MoodViewModel
+import com.radzhabov.moodtracker.ui.home.edit.MoodEdit
+import com.radzhabov.moodtracker.ui.viewmodel.MoodEditViewModel
+import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 
 @Composable
 fun AppNavigation(
     snackBarHostState: SnackbarHostState,
-    screens: List<Screen>,
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
-    moodViewModel: MoodViewModel,
+    moodListViewModel: MoodListViewModel,
+    moodEditViewModel: MoodEditViewModel,
     padding: PaddingValues,
-    context: Context,
 ){
     NavHost(
         navController = navController as NavHostController,
-        startDestination = Screens.BottomNavBar.route
+        startDestination = Routes.BOTTOM
     ){
 
-        composable(route = Screens.Home.route){
-            HomeScreen(navController, weatherState, context)
+        composable(route = Routes.HOME){
+            HomeScreen(
+                onNavigate = { navController.navigate(it.route) },
+                viewModel = moodListViewModel,
+                weatherState = weatherState,
+
+            )
         }
 
-        composable(route = Screens.Stats.route ){ StatsScreen() }
+        composable(route = Routes.STATS ){ StatsScreen() }
 
-        composable(route = Screens.Settings.route ){ SettingsScreen(padding) }
+        composable(route = Routes.SETTINGS ){ SettingsScreen(padding) }
 
-        composable(route = Screens.BottomNavBar.route ){
-            BottomNavBar(snackBarHostState, screens, navController, weatherState, context)
+        composable(route = Routes.BOTTOM ){
+            BottomNavBar(snackBarHostState, moodListViewModel, navController, weatherState)
         }
 
-        composable(route = Screens.EditHomeContentScreen.route) {
-            EditHomeContentScreen(navController, moodViewModel, context)
+        composable(
+            route = Routes.MOOD_EDIT + "?moodId={moodId}",
+            arguments = listOf(
+                navArgument(name = "moodId") {
+                    type = NavType.IntType
+                    defaultValue = -1
+                }
+            )
+        ) {
+            MoodEdit(
+                onPopBackStack = { navController.popBackStack() },
+                moodEditViewModel
+            )
         }
 
     }

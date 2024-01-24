@@ -8,7 +8,9 @@ import com.radzhabov.moodtracker.data.db.AppDatabase
 import com.radzhabov.moodtracker.data.db.dao.MoodDao
 import com.radzhabov.moodtracker.data.network.api.WeatherApi
 import com.radzhabov.moodtracker.data.network.service.NetworkService
+import com.radzhabov.moodtracker.data.repositories.MoodRepositoryImpl
 import com.radzhabov.moodtracker.data.repositories.WeatherApiRepositoryImpl
+import com.radzhabov.moodtracker.domain.repositories.MoodRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +30,12 @@ object AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext appContext: Context) =
         AppDatabase.getInstance(appContext)
+
+    @Provides
+    @Singleton
+    fun provideMoodRepository(db: AppDatabase): MoodRepository {
+        return MoodRepositoryImpl(db.moodDao())
+    }
 
     @Provides
     @Singleton

@@ -24,70 +24,68 @@ import coil.compose.rememberImagePainter
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
 
-class WeatherCard(
-    private val weatherState: CurrentWeatherCardModel?,
-    private val modifier: Modifier = Modifier,
+@Composable
+fun WeatherCard(
+    weatherState: CurrentWeatherCardModel?,
+    modifier: Modifier = Modifier,
 ) {
-    @Composable
-    fun ContentCard() {
-        Box(
-            modifier = Modifier
-                .padding(16.dp)
-                .shadow(elevation = Dp.Unspecified, shape = RoundedCornerShape(size = 16.dp))
-                .fillMaxWidth(),
+    Box(
+        modifier = Modifier
+            .padding(16.dp)
+            .shadow(elevation = Dp.Unspecified, shape = RoundedCornerShape(size = 16.dp))
+            .fillMaxWidth(),
+    ) {
+        Row(
+            modifier = modifier
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Row(
-                modifier = modifier
-                    .padding(8.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
 
-                weatherState?.let { data ->
-                    Column {
-                            data.dateTime?.let {
-                                Text(
-                                    style = MaterialTheme.typography.titleSmall,
-                                    text = it,
-                                )
-                            }
-
-                        Spacer(modifier = Modifier.padding(4.dp))
-
-                        data.nameCity?.let {
-                            Text(
-                                text = it,
-                                style = MaterialTheme.typography.titleSmall,
-                            )
-                        }
+            weatherState?.let { data ->
+                Column {
+                    data.dateTime?.let {
+                        Text(
+                            style = MaterialTheme.typography.titleSmall,
+                            text = it,
+                        )
                     }
 
-                    Spacer(modifier = Modifier.weight(1f))
+                    Spacer(modifier = Modifier.padding(4.dp))
 
-                    Image(
-                        painter = rememberImagePainter(
-                            data = "https:" + data.imageUrl,
-                            builder = {
-                                placeholder(R.drawable.ic_placeholder)
-                                error(R.drawable.ic_error)
-                            }
-                        ),
-                        contentDescription = null,
-                        modifier = Modifier
-                            .height(44.dp)
-                            .width(52.dp)
-                            .padding(end = 4.dp),
-                    )
-
-
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Text(
-                        style = MaterialTheme.typography.titleLarge,
-                        text = "${data.currentTemp}°C",
-                        fontSize = 24.sp,
-                    )
+                    data.nameCity?.let {
+                        Text(
+                            text = it,
+                            style = MaterialTheme.typography.titleSmall,
+                        )
+                    }
                 }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Image(
+                    painter = rememberImagePainter(
+                        data = "https:" + data.imageUrl,
+                        builder = {
+                            placeholder(R.drawable.ic_placeholder)
+                            error(R.drawable.ic_error)
+                        }
+                    ),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(44.dp)
+                        .width(52.dp)
+                        .padding(end = 4.dp),
+                )
+
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    style = MaterialTheme.typography.titleLarge,
+                    text = "${data.currentTemp}°C",
+                    fontSize = 24.sp,
+                )
             }
         }
     }

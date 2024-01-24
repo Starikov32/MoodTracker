@@ -1,13 +1,9 @@
-package com.radzhabov.moodtracker.ui.home.content.edit
+package com.radzhabov.moodtracker.ui.home.edit
 
-import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,7 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -34,16 +29,13 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
-import com.radzhabov.moodtracker.domain.screen.Screens
-import com.radzhabov.moodtracker.ui.viewmodel.MoodViewModel
+import com.radzhabov.moodtracker.ui.viewmodel.MoodEditViewModel
 
 @Composable
-fun EditHomeContentScreen(
-    navController: NavController,
-    moodViewModel: MoodViewModel,
-    context: Context,
+fun MoodEdit(
+    onPopBackStack: () -> Unit,
+    viewModel: MoodEditViewModel,
 ) {
     var name by remember { mutableStateOf("") }
     var state by remember { mutableStateOf("") }
@@ -96,36 +88,15 @@ fun EditHomeContentScreen(
                 )
             )
 
-
-            Row {
-                Button(
-                    onClick = { navController.navigate(Screens.BottomNavBar.route) },
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = null
-                    )
-                }
-
-                Spacer(modifier = Modifier.padding(8.dp))
-
-                Button(
-                    onClick = {
-                        moodViewModel.insertMood(name, state.toInt())
-
-                        Toast.makeText(
-                            context,
-                            "Save button is worked",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    },
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.Check,
-                        contentDescription = null
-                    )
-                }
+            Button(
+                onClick = {  },
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.Check,
+                    contentDescription = null
+                )
             }
+
         }
     }
 }

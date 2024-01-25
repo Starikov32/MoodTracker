@@ -12,7 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
-import com.radzhabov.moodtracker.domain.screen.Screen
+import com.radzhabov.moodtracker.domain.model.Screen
 import com.radzhabov.moodtracker.ui.home.HomeScreen
 import com.radzhabov.moodtracker.ui.settings.SettingsScreen
 import com.radzhabov.moodtracker.ui.stats.StatsScreen

@@ -10,7 +10,6 @@ import com.radzhabov.moodtracker.domain.util.Routes
 import com.radzhabov.moodtracker.domain.util.UiEvent
 import com.radzhabov.moodtracker.ui.home.MoodListEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -20,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MoodListViewModel @Inject constructor(
     private val moodRepository: MoodRepository,
-    @ApplicationContext private val application: Application
+    private val application: Application,
 ): ViewModel() {
     val mood = moodRepository.getMoods()
 
@@ -49,8 +48,8 @@ class MoodListViewModel @Inject constructor(
                     deletedMood = event.mood
                     moodRepository.deleteMood(event.mood)
                     sendUiEvent(UiEvent.ShowSnackBar(
-                        message = application.applicationContext.getString(R.string.factor_mood_deleted),
-                        action = "Undo"
+                        message = application.getString(R.string.factor_mood_deleted),
+                        action = application.getString(R.string.undo)
                     ))
                 }
             }

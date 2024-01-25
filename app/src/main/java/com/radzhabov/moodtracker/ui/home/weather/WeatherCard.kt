@@ -41,7 +41,6 @@ fun WeatherCard(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-
             weatherState?.let { data ->
                 Column {
                     data.dateTime?.let {

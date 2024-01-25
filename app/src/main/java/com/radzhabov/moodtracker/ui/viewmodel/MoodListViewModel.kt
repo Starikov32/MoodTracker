@@ -1,6 +1,6 @@
 package com.radzhabov.moodtracker.ui.viewmodel
 
-import android.content.Context
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.radzhabov.moodtracker.R
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MoodListViewModel @Inject constructor(
     private val moodRepository: MoodRepository,
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val application: Application
 ): ViewModel() {
     val mood = moodRepository.getMoods()
 
@@ -49,7 +49,7 @@ class MoodListViewModel @Inject constructor(
                     deletedMood = event.mood
                     moodRepository.deleteMood(event.mood)
                     sendUiEvent(UiEvent.ShowSnackBar(
-                        message = context.getString(R.string.factor_mood_deleted),
+                        message = application.applicationContext.getString(R.string.factor_mood_deleted),
                         action = "Undo"
                     ))
                 }

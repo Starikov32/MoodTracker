@@ -3,6 +3,11 @@ package com.radzhabov.moodtracker.ui.navigation
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -20,6 +25,7 @@ import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 
 @Composable
 fun AppNavigation(
+    modifier: Modifier,
     snackBarHostState: SnackbarHostState,
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
@@ -27,13 +33,16 @@ fun AppNavigation(
     moodEditViewModel: MoodEditViewModel,
     padding: PaddingValues,
 ){
+    var selectedScreen by remember { mutableIntStateOf(0) }
+
     NavHost(
         navController = navController as NavHostController,
-        startDestination = Routes.HOME
+        startDestination = Routes.BOTTOM
     ){
 
         composable(route = Routes.HOME){
             HomeScreen(
+                modifier = modifier,
                 onNavigate = { navController.navigate(it.route) },
                 viewModel = moodListViewModel,
                 weatherState = weatherState,
@@ -46,7 +55,16 @@ fun AppNavigation(
         composable(route = Routes.SETTINGS ){ SettingsScreen(padding) }
 
         composable(route = Routes.BOTTOM ){
-            BottomNavBar(snackBarHostState, moodListViewModel, navController, weatherState)
+            BottomNavBar(
+                snackBarHostState,
+                moodListViewModel,
+                navController,
+                selectedScreen,
+                {
+                    selectedScreen = it
+                },
+                weatherState
+            )
         }
 
         composable(

@@ -29,6 +29,7 @@ import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 
 @Composable
 fun HomeScreen(
+    modifier: Modifier,
     onNavigate: (UiEvent.Navigate) -> Unit,
     viewModel: MoodListViewModel,
     weatherState: CurrentWeatherCardModel?,
@@ -54,7 +55,8 @@ fun HomeScreen(
     }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize(),
         snackbarHost = { SnackbarHost(snackBarHostState) },
         floatingActionButton = {
             FloatingActionButton(onClick = {

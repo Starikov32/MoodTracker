@@ -44,23 +44,3 @@ fun NavigationBarContent(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun NavigationBarContentPreview() {
-    var selectedScreen by remember { mutableIntStateOf(0) }
-    val screens: List<Screen> = listOf(
-        Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
-        Screen(label = "Stats", icon = painterResource(R.drawable.ic_stats)),
-        Screen(label = "Settings", icon = painterResource(R.drawable.ic_settings))
-    )
-
-    NavigationBarContent(
-        screens = screens,
-        selectedScreen = selectedScreen,
-        onScreenSelected = {
-                newIndex ->
-            selectedScreen = newIndex
-        }
-    )
-}

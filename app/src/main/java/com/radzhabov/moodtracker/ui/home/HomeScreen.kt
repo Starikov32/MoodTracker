@@ -1,7 +1,6 @@
 package com.radzhabov.moodtracker.ui.home
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,6 +29,7 @@ import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 
 @Composable
 fun HomeScreen(
+    modifier: Modifier,
     onNavigate: (UiEvent.Navigate) -> Unit,
     viewModel: MoodListViewModel,
     weatherState: CurrentWeatherCardModel?,
@@ -55,7 +55,8 @@ fun HomeScreen(
     }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize(),
         snackbarHost = { SnackbarHost(snackBarHostState) },
         floatingActionButton = {
             FloatingActionButton(onClick = {

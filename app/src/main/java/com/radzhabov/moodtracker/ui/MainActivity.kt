@@ -14,6 +14,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -48,9 +49,11 @@ class MainActivity : ComponentActivity() {
                 val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 val navController = rememberNavController()
                 val padding = PaddingValues()
+                val modifier = Modifier
                 val weatherState by weatherViewModel.currentWeatherState.collectAsState()
 
                 AppNavigation(
+                    modifier,
                     snackBarHostState,
                     navController,
                     weatherState,

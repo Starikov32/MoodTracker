@@ -11,4 +11,6 @@
 
     <string name="condition_name">Названия состояния</string>
     <string name="enter_condition_name">Введите название состояние </string>
+    <string name="example">Пример</string>
+    <string name="factor_mood_deleted">Factor mood deleted</string>
 </resources>

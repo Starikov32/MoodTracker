@@ -1,18 +1,25 @@
 package com.radzhabov.moodtracker.ui.navigation
 
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
-import com.radzhabov.moodtracker.domain.screen.Screen
+import com.radzhabov.moodtracker.domain.model.Screen
 import com.radzhabov.moodtracker.ui.home.HomeScreen
 import com.radzhabov.moodtracker.ui.settings.SettingsScreen
 import com.radzhabov.moodtracker.ui.stats.StatsScreen
@@ -23,9 +30,10 @@ fun BottomNavBar(
     snackBarHostState: SnackbarHostState,
     viewModel: MoodListViewModel,
     navController: NavController,
+    selectedScreen: Int,
+    onScreenSelected: (Int) -> Unit,
     weatherState: CurrentWeatherCardModel?,
 ) {
-    var selectedScreen by remember { mutableIntStateOf(0) }
     val screens: List<Screen> = listOf(
         Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
         Screen(label = "Stats", icon = painterResource(R.drawable.ic_stats)),
@@ -35,17 +43,34 @@ fun BottomNavBar(
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
         bottomBar = {
-            NavigationBarContent(
-                screens = screens,
-                selectedScreen = selectedScreen,
-                onScreenSelected = { newIndex ->
-                    selectedScreen = newIndex
+            NavigationBar(
+                contentColor = Color.Black,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(8.dp))
+            ) {
+                screens.forEachIndexed { index, screen ->
+                    NavigationBarItem(
+                        selected = selectedScreen == index,
+                        onClick = {
+                            onScreenSelected(index)
+                        },
+                        icon = { Icon(screen.icon, contentDescription = screen.label) },
+                        label = { Text(text = screen.label) },
+                    )
                 }
-            )
+            }
+
         }
     ) { innerPadding ->
+        val modifier = Modifier.padding(innerPadding)
         when (selectedScreen) {
-            0 -> HomeScreen({ navController.navigate(it.route) }, viewModel, weatherState)
+            0 -> HomeScreen(
+                modifier,
+                { navController.navigate(it.route) },
+                viewModel,
+                weatherState
+            )
             1 -> StatsScreen()
             2 -> SettingsScreen(innerPadding)
         }

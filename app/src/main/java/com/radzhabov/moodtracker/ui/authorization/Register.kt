@@ -1,6 +1,7 @@
 package com.radzhabov.moodtracker.ui.authorization
 
 import android.content.Context
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,44 +32,46 @@ fun Register(
     var userName by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    OutlinedTextField(
-        value = userName,
-        onValueChange = { userName = it },
-        label = { Text(text = "Логин") },
-        placeholder = { Text(text = "Введите логин") },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, bottom = 13.dp),
-        shape = RoundedCornerShape(16.dp),
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Next,
-            keyboardType = KeyboardType.Text
+    Column {
+        OutlinedTextField(
+            value = userName,
+            onValueChange = { userName = it },
+            label = { Text(text = "Логин") },
+            placeholder = { Text(text = "Введите логин") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, bottom = 13.dp),
+            shape = RoundedCornerShape(16.dp),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next,
+                keyboardType = KeyboardType.Text
+            )
         )
-    )
 
-    OutlinedTextField(
-        value = password,
-        onValueChange = { password = it },
-        label = { Text(text = "Пароль") },
-        placeholder = { Text(text = "Введите пароль") },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, bottom = 13.dp),
-        shape = RoundedCornerShape(16.dp),
-        keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Next,
-            keyboardType = KeyboardType.Text
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text(text = "Пароль") },
+            placeholder = { Text(text = "Введите пароль") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, bottom = 13.dp),
+            shape = RoundedCornerShape(16.dp),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next,
+                keyboardType = KeyboardType.Text
+            )
         )
-    )
 
-    Button(onClick = {
-        if (userName.isNotEmpty() && password.isNotEmpty()) {
-            CoroutineScope(Dispatchers.IO).launch {
-                userPreferencesManager.saveUserData(context, userName, password)
+        Button(onClick = {
+            if (userName.isNotEmpty() && password.isNotEmpty()) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    userPreferencesManager.saveUserData(userName, password)
+                }
             }
+        }) {
+            Text(text = "Ok")
         }
-    }) {
-        Text(text = "Ok")
     }
 
 }

@@ -13,11 +13,16 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.radzhabov.moodtracker.data.user.UserPreferencesManager
+import com.radzhabov.moodtracker.ui.authorization.Register
 import com.radzhabov.moodtracker.ui.location.LocationManager
 import com.radzhabov.moodtracker.ui.navigation.AppNavigation
 import com.radzhabov.moodtracker.ui.theme.MoodTrackerTheme
@@ -46,21 +51,32 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoodTrackerTheme {
+                val userPreferencesManager = UserPreferencesManager
                 val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 val navController = rememberNavController()
                 val padding = PaddingValues()
                 val modifier = Modifier
                 val weatherState by weatherViewModel.currentWeatherState.collectAsState()
+                val context = LocalContext.current
+                var isRegisteredIn by remember { mutableStateOf(false) }
 
-                AppNavigation(
-                    modifier,
-                    snackBarHostState,
-                    navController,
-                    weatherState,
-                    moodListViewModel,
-                    moodEditViewModel,
-                    padding
-                )
+                if (isRegisteredIn) {
+                    AppNavigation(
+                        modifier,
+                        snackBarHostState,
+                        navController,
+                        weatherState,
+                        moodListViewModel,
+                        moodEditViewModel,
+                        padding
+                    )
+                } else {
+                    Register(
+                        context = context,
+                        userPreferencesManager = userPreferencesManager,
+                        onRegistrationComplete =  { isRegisteredIn = true },
+                    )
+                }
             }
         }
     }

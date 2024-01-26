@@ -26,13 +26,12 @@ import com.radzhabov.moodtracker.domain.util.UiEvent
 import com.radzhabov.moodtracker.ui.home.moodlist.MoodItem
 import com.radzhabov.moodtracker.ui.home.weather.WeatherCard
 import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
-ff[f[f[f[fimport androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun HomeScreen(
     modifier: Modifier,
     onNavigate: (UiEvent.Navigate) -> Unit,
-    viewModel: MoodListViewModel = viewModel(),
+    viewModel: MoodListViewModel,
     weatherState: CurrentWeatherCardModel?,
 ) {
     val moods = viewModel.mood.collectAsState(initial = emptyList())

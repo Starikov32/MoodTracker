@@ -1,6 +1,5 @@
 package com.radzhabov.moodtracker.ui.authorization
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.radzhabov.moodtracker.data.user.UserPreferencesManager
@@ -10,13 +9,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthorizationViewModel @Inject constructor(
-    private val application: Application
+    private val userPreferencesManager: UserPreferencesManager
 ): ViewModel() {
-    private val userPreferencesManager = UserPreferencesManager
 
-    fun getUserPreferences() {
+    fun saveUserData(userName: String, password: String) {
         viewModelScope.launch {
-            userPreferencesManager.saveUserData()
+            userPreferencesManager.saveUserData(userName, password)
         }
     }
 }

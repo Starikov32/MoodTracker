@@ -16,7 +16,7 @@ class AuthorizationViewModel @Inject constructor(
 
     fun getUserPreferences() {
         viewModelScope.launch {
-            userPreferencesManager.saveUserData()
+//            userPreferencesManager.saveUserData()
         }
     }
 }

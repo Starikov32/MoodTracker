@@ -1,6 +1,8 @@
 package com.radzhabov.moodtracker.ui.authorization
 
 import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.radzhabov.moodtracker.data.user.UserPreferencesManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,8 +29,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun Register(
     context: Context,
+    viewModel: AuthorizationViewModel = hiltViewModel(),
     userPreferencesManager: UserPreferencesManager,
-    onRegistrationComplete: () -> Unit
 ) {
     var userName by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -67,7 +70,14 @@ fun Register(
             if (userName.isNotEmpty() && password.isNotEmpty()) {
                 CoroutineScope(Dispatchers.IO).launch {
                     userPreferencesManager.saveUserData(userName, password)
+                    Log.i("UserPreferencesManager", "worked correctly")
                 }
+            } else {
+                Toast.makeText(
+                    context,
+                    "Введите логин и пароль",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }) {
             Text(text = "Ok")

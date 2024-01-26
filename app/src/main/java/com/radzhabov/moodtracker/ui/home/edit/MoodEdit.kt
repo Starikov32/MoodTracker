@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.util.UiEvent
 import com.radzhabov.moodtracker.ui.viewmodel.MoodEditViewModel
@@ -34,16 +35,16 @@ import com.radzhabov.moodtracker.ui.viewmodel.MoodEditViewModel
 @Composable
 fun MoodEdit(
     onPopBackStack: () -> Unit,
-    viewModel: MoodEditViewModel,
+    viewModel: MoodEditViewModel = hiltViewModel(),
 ) {
-    val snackbarHostState = remember { SnackbarHostState() }
+    val snackBarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when(event) {
                 is UiEvent.PopBackStack -> onPopBackStack()
                 is UiEvent.ShowSnackBar -> {
-                    snackbarHostState.showSnackbar(
+                    snackBarHostState.showSnackbar(
                         message = event.message,
                         actionLabel = event.action,
                     )
@@ -54,7 +55,7 @@ fun MoodEdit(
     }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(snackbarHostState) },
+        snackbarHost = { SnackbarHost(snackBarHostState) },
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)

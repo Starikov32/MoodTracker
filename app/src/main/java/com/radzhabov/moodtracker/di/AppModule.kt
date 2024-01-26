@@ -3,8 +3,11 @@ package com.radzhabov.moodtracker.di
 import android.app.Application
 import android.content.Context
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.preferencesDataStoreFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.radzhabov.moodtracker.data.db.AppDatabase
@@ -25,18 +28,17 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    private val USER_NAME_KEY = stringPreferencesKey("user_name")
-    private val USER_PASSWORD_KEY = stringPreferencesKey("user_password")
-
+    @Singleton
     @Provides
-    fun provideDataStore(context: Context): DataStore<Preferences> {
-        return context.applicationContext.preferencesDataStore(name = "user_preferences")
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> {
+        return PreferenceDataStoreFactory.create(
+            corruptionHandler = ReplaceFileCorruptionHandler(produceNewData = { emptyPreferences() }),
+            produceFile = { context.preferencesDataStoreFile("user_preferences") })
     }
 
     @Provides
-    fun provideUserPreferencesManager(context: Context): UserPreferencesManager {
-        return UserPreferencesManager(context)
+    fun provideUserPreferencesManager(dataStore: DataStore<Preferences>): UserPreferencesManager {
+        return UserPreferencesManager(dataStore)
     }
 
     @Provides

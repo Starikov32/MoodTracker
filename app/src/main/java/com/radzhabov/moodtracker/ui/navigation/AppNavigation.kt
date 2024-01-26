@@ -1,5 +1,6 @@
 package com.radzhabov.moodtracker.ui.navigation
 
+import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -8,7 +9,6 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -17,16 +17,17 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
 import com.radzhabov.moodtracker.domain.util.Routes
+import com.radzhabov.moodtracker.ui.authorization.Login
+import com.radzhabov.moodtracker.ui.authorization.Registration
 import com.radzhabov.moodtracker.ui.home.HomeScreen
 import com.radzhabov.moodtracker.ui.settings.SettingsScreen
 import com.radzhabov.moodtracker.ui.stats.StatsScreen
 import com.radzhabov.moodtracker.ui.home.edit.MoodEdit
-import com.radzhabov.moodtracker.ui.viewmodel.MoodEditViewModel
-import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 
 @Composable
 fun AppNavigation(
     modifier: Modifier,
+    context: Context,
     snackBarHostState: SnackbarHostState,
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
@@ -36,8 +37,12 @@ fun AppNavigation(
 
     NavHost(
         navController = navController as NavHostController,
-        startDestination = Routes.BOTTOM
+        startDestination = Routes.LOGIN
     ){
+
+        composable(route = Routes.REGISTRATION ){ Registration(context, navController) }
+
+        composable(route = Routes.LOGIN ){ Login(context, navController) }
 
         composable(route = Routes.HOME){
             HomeScreen(

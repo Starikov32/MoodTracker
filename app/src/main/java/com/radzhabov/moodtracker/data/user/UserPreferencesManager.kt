@@ -9,22 +9,22 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-data class UserPreferences(val userName:String, val password:String)
+data class UserPreferences(val userName: String, val password: String)
 
-object UserPreferencesManager {
-    private val USER_NAME_KEY = stringPreferencesKey("user_name")
-    private val USER_PASSWORD_KEY = stringPreferencesKey("user_password")
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
+class UserPreferencesManager(context: Context) {
 
-    suspend fun saveUserData(context: Context, username: String, password: String) {
-        context.dataStore.edit { preferences ->
+    private val appContext = context.applicationContext
+    private val dataStore: DataStore<Preferences> = appContext._dataStore
+
+    suspend fun saveUserData(username: String, password: String) {
+        dataStore.edit { preferences ->
             preferences[USER_NAME_KEY] = username
             preferences[USER_PASSWORD_KEY] = password
         }
     }
 
-    fun readUserData(context: Context): Flow<UserPreferences?> {
-        return context.dataStore.data.map { preferences ->
+    fun readUserData(): Flow<UserPreferences?> {
+        return dataStore.data.map { preferences ->
             UserPreferences(
                 preferences[USER_NAME_KEY] ?: "",
                 preferences[USER_PASSWORD_KEY] ?: ""
@@ -32,9 +32,19 @@ object UserPreferencesManager {
         }
     }
 
-    suspend fun clearUserData(context: Context) {
-        context.dataStore.edit { preferences ->
-            preferences.clear()
-        }
+    // Create a name flow to retrieve name from the preferences
+    val userNameFlow: Flow<String> = dataStore.data.map {
+        it[USER_NAME_KEY] ?: ""
+    }
+
+    // Create a password flow to retrieve password from the preferences
+    val userPasswordFlow: Flow<String> = dataStore.data.map {
+        it[USER_PASSWORD_KEY] ?: ""
+    }
+
+    companion object {
+        private val USER_NAME_KEY = stringPreferencesKey("user_name")
+        private val USER_PASSWORD_KEY = stringPreferencesKey("user_password")
+        private val Context._dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
     }
 }

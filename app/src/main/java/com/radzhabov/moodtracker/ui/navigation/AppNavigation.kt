@@ -8,6 +8,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -29,8 +30,6 @@ fun AppNavigation(
     snackBarHostState: SnackbarHostState,
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
-    moodListViewModel: MoodListViewModel,
-    moodEditViewModel: MoodEditViewModel,
     padding: PaddingValues,
 ){
     var selectedScreen by remember { mutableIntStateOf(0) }
@@ -44,7 +43,6 @@ fun AppNavigation(
             HomeScreen(
                 modifier = modifier,
                 onNavigate = { navController.navigate(it.route) },
-                viewModel = moodListViewModel,
                 weatherState = weatherState,
 
             )
@@ -57,7 +55,6 @@ fun AppNavigation(
         composable(route = Routes.BOTTOM ){
             BottomNavBar(
                 snackBarHostState,
-                moodListViewModel,
                 navController,
                 selectedScreen,
                 {
@@ -78,7 +75,6 @@ fun AppNavigation(
         ) {
             MoodEdit(
                 onPopBackStack = { navController.popBackStack() },
-                moodEditViewModel
             )
         }
 

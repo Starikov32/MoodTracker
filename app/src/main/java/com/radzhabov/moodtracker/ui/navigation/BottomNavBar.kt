@@ -28,7 +28,6 @@ import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 @Composable
 fun BottomNavBar(
     snackBarHostState: SnackbarHostState,
-    viewModel: MoodListViewModel,
     navController: NavController,
     selectedScreen: Int,
     onScreenSelected: (Int) -> Unit,
@@ -68,8 +67,7 @@ fun BottomNavBar(
             0 -> HomeScreen(
                 modifier,
                 { navController.navigate(it.route) },
-                viewModel,
-                weatherState
+                weatherState = weatherState
             )
             1 -> StatsScreen()
             2 -> SettingsScreen(innerPadding)

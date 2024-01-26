@@ -1,20 +1,15 @@
 package com.radzhabov.moodtracker.data.user
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
-import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 data class UserPreferences(val userName: String, val password: String)
 
-class UserPreferencesManager(context: Context) {
-
-    private val appContext = context.applicationContext
-    private val dataStore: DataStore<Preferences> = appContext._dataStore
+class UserPreferencesManager(private val dataStore: DataStore<Preferences>) {
 
     suspend fun saveUserData(username: String, password: String) {
         dataStore.edit { preferences ->
@@ -45,6 +40,5 @@ class UserPreferencesManager(context: Context) {
     companion object {
         private val USER_NAME_KEY = stringPreferencesKey("user_name")
         private val USER_PASSWORD_KEY = stringPreferencesKey("user_password")
-        private val Context._dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
     }
 }

@@ -1,6 +1,7 @@
 package com.radzhabov.moodtracker.ui
 
 import android.Manifest
+import android.content.Context
 import android.location.Location
 import android.os.Bundle
 import android.widget.Toast
@@ -18,6 +19,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -36,13 +40,14 @@ class MainActivity : ComponentActivity() {
     private lateinit var resultLauncher: ActivityResultLauncher<String>
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val weatherViewModel: WeatherViewModel by viewModels()
-    private val moodEditViewModel: MoodEditViewModel by viewModels()
-    private val moodListViewModel: MoodListViewModel by viewModels()
     private lateinit var locationManager: LocationManager
+//    private val Context._dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        val appContext = this.applicationContext
+//        val dataStore: DataStore<Preferences> = appContext._dataStore
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationManager = LocationManager(fusedLocationClient,this)
@@ -51,32 +56,26 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoodTrackerTheme {
-                val userPreferencesManager = UserPreferencesManager
+//                val userPreferencesManager = UserPreferencesManager(dataStore)
                 val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 val navController = rememberNavController()
                 val padding = PaddingValues()
                 val modifier = Modifier
                 val weatherState by weatherViewModel.currentWeatherState.collectAsState()
                 val context = LocalContext.current
-                var isRegisteredIn by remember { mutableStateOf(false) }
 
-                if (isRegisteredIn) {
-                    AppNavigation(
-                        modifier,
-                        snackBarHostState,
-                        navController,
-                        weatherState,
-                        moodListViewModel,
-                        moodEditViewModel,
-                        padding
-                    )
-                } else {
-                    Register(
-                        context = context,
-                        userPreferencesManager = userPreferencesManager,
-                        onRegistrationComplete =  { isRegisteredIn = true },
-                    )
-                }
+//                AppNavigation(
+//                    modifier,
+//                    snackBarHostState,
+//                    navController,
+//                    weatherState,
+//                    padding
+//                )
+
+                Register(
+                    context = context,
+                )
+
             }
         }
     }

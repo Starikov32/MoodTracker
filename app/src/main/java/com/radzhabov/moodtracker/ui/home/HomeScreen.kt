@@ -21,6 +21,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.radzhabov.moodtracker.domain.model.CurrentWeatherCardModel
 import com.radzhabov.moodtracker.domain.util.UiEvent
 import com.radzhabov.moodtracker.ui.home.moodlist.MoodItem
@@ -31,7 +32,7 @@ import com.radzhabov.moodtracker.ui.viewmodel.MoodListViewModel
 fun HomeScreen(
     modifier: Modifier,
     onNavigate: (UiEvent.Navigate) -> Unit,
-    viewModel: MoodListViewModel,
+    viewModel: MoodListViewModel = hiltViewModel(),
     weatherState: CurrentWeatherCardModel?,
 ) {
     val moods = viewModel.mood.collectAsState(initial = emptyList())

@@ -17,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthorizationViewModel @Inject constructor(
     private val userPreferencesManager: UserPreferencesManager,
-    private val application: Application
 ): ViewModel() {
 
     val userNameFlow: Flow<String> = userPreferencesManager.userNameFlow

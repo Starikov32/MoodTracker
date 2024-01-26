@@ -41,13 +41,13 @@ class MainActivity : ComponentActivity() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val weatherViewModel: WeatherViewModel by viewModels()
     private lateinit var locationManager: LocationManager
-    private val Context._dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
+//    private val Context._dataStore: DataStore<Preferences> by preferencesDataStore(name = "user_preferences")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val appContext = this.applicationContext
-        val dataStore: DataStore<Preferences> = appContext._dataStore
+//        val appContext = this.applicationContext
+//        val dataStore: DataStore<Preferences> = appContext._dataStore
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         locationManager = LocationManager(fusedLocationClient,this)
@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             MoodTrackerTheme {
-                val userPreferencesManager = UserPreferencesManager(dataStore)
+//                val userPreferencesManager = UserPreferencesManager(dataStore)
                 val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 val navController = rememberNavController()
                 val padding = PaddingValues()
@@ -74,7 +74,6 @@ class MainActivity : ComponentActivity() {
 
                 Register(
                     context = context,
-                    userPreferencesManager = userPreferencesManager,
                 )
 
             }

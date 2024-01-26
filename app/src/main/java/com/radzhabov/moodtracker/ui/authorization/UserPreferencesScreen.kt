@@ -1,9 +1,15 @@
 package com.radzhabov.moodtracker.ui.authorization
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.hilt.navigation.compose.hiltViewModel
 
 //@Composable
-//fun UserPreferencesScreen(userPreferencesViewModel: UserPreferencesViewModel = viewModel()) {
+//fun UserPreferencesScreen(userPreferencesViewModel: AuthorizationViewModel = hiltViewModel()) {
 //    val userName by userPreferencesViewModel.userNameFlow.collectAsState("")
 //    val userPassword by userPreferencesViewModel.userPasswordFlow.collectAsState("")
 //

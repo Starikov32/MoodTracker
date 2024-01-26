@@ -14,4 +14,6 @@
     <string name="factor_mood_deleted">Factor Mood deleted</string>
     <string name="undo">Undo</string>
     <string name="example">Пример</string>
+    <string name="registration">Регистрация</string>
+    <string name="login">Логин</string>
 </resources>

@@ -6,4 +6,6 @@ object Routes {
     const val MOOD_EDIT = "mood_edit"
     const val SETTINGS = "settings"
     const val BOTTOM = "bottom"
+    const val LOGIN = "login"
+    const val REGISTRATION = "registration"
 }

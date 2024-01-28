@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
@@ -34,9 +35,9 @@ fun BottomNavBar(
     weatherState: CurrentWeatherCardModel?,
 ) {
     val screens: List<Screen> = listOf(
-        Screen(label = "Home", icon = painterResource(R.drawable.ic_home)),
-        Screen(label = "Stats", icon = painterResource(R.drawable.ic_stats)),
-        Screen(label = "Settings", icon = painterResource(R.drawable.ic_settings))
+        Screen(label = stringResource(R.string.home), icon = painterResource(R.drawable.ic_home)),
+        Screen(label = stringResource(R.string.statistics), icon = painterResource(R.drawable.ic_stats)),
+        Screen(label = stringResource(R.string.settings), icon = painterResource(R.drawable.ic_settings))
     )
 
     Scaffold(

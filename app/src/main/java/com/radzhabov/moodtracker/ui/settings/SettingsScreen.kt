@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.radzhabov.moodtracker.R
 
 @Composable
 fun SettingsScreen(
@@ -14,6 +16,6 @@ fun SettingsScreen(
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        Text(text = "Settings Screen")
+        Text(text = stringResource(R.string.settings_screen))
     }
 }

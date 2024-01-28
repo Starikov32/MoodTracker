@@ -17,7 +17,7 @@ class LocationManager(
     private val activity: ComponentActivity,
 ) {
 
-    fun checkLocation(onLocationReceived: (Location) -> Unit){
+    fun checkLocation(onLocationReceived: (Location) -> Unit) {
         if (isLocationEnabled()) {
             requireLocation { location ->
                 location?.let { onLocationReceived(it) }

@@ -66,7 +66,7 @@ fun MoodEdit(
             }) {
                 Icon(
                     imageVector = Icons.Filled.Check,
-                    contentDescription = "Save"
+                    contentDescription = stringResource(R.string.save)
                 )
             }
         }
@@ -110,7 +110,6 @@ fun MoodEdit(
                     keyboardType = KeyboardType.Number
                 )
             )
-
         }
 
     }

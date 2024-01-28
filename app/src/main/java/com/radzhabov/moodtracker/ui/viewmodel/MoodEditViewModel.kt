@@ -80,5 +80,4 @@ class MoodEditViewModel @Inject constructor(
             _uiEvent.send(event)
         }
     }
-
 }

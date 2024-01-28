@@ -3,7 +3,6 @@ package com.radzhabov.moodtracker.ui
 import android.Manifest
 import android.location.Location
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.ActivityResultLauncher
@@ -19,10 +18,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.radzhabov.moodtracker.ui.authorization.Registration
+import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.ui.location.LocationManager
 import com.radzhabov.moodtracker.ui.navigation.AppNavigation
 import com.radzhabov.moodtracker.ui.theme.MoodTrackerTheme
+import com.radzhabov.moodtracker.ui.utils.showToast
 import com.radzhabov.moodtracker.ui.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,7 +58,6 @@ class MainActivity : ComponentActivity() {
                     weatherState,
                     padding
                 )
-
             }
         }
     }
@@ -82,8 +81,8 @@ class MainActivity : ComponentActivity() {
 
     private fun permissionListener() {
         resultLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            val message = if (isGranted) "Permission granted!" else "Permission denied!"
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+            val message = if (isGranted) R.string.permission_granted else R.string.permission_denied
+            this.showToast(message)
         }
     }
 

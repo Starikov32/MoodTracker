@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.util.Routes
+import com.radzhabov.moodtracker.ui.utils.showToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,8 +67,8 @@ fun Registration(
             TextField(
                 value = newUserNameState.value,
                 onValueChange = { newUserNameState.value = it },
-                label = { Text(text = "Логин") },
-                placeholder = { Text(text = "Введите логин") },
+                label = { Text(text = stringResource(R.string.login)) },
+                placeholder = { Text(text = stringResource(R.string.enter_login)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, bottom = 16.dp),
@@ -83,8 +84,8 @@ fun Registration(
             TextField(
                 value = newPasswordState.value,
                 onValueChange = { newPasswordState.value = it },
-                label = { Text(text = "Пароль") },
-                placeholder = { Text(text = "Введите пароль") },
+                label = { Text(text = stringResource(R.string.password)) },
+                placeholder = { Text(text = stringResource(R.string.enter_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, bottom = 16.dp),
@@ -104,14 +105,10 @@ fun Registration(
                     }
                     navController.navigate(Routes.LOGIN)
                 } else {
-                    Toast.makeText(
-                        context,
-                        "Введите логин и пароль",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    context.showToast(R.string.enter_registration_data)
                 }
             }) {
-                Text(text = "Ok")
+                Text(text = stringResource(R.string.ok))
             }
         }
     }

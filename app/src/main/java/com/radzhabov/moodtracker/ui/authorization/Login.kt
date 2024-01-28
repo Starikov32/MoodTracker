@@ -30,6 +30,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.util.Routes
+import com.radzhabov.moodtracker.ui.utils.showToast
 
 @Composable
 fun Login(
@@ -63,8 +64,8 @@ fun Login(
             TextField(
                 value = enteredUserNameState.value,
                 onValueChange = { enteredUserNameState.value = it },
-                label = { Text(text = "Логин") },
-                placeholder = { Text(text = "Введите логин") },
+                label = { Text(text = stringResource(R.string.login)) },
+                placeholder = { Text(text = stringResource(R.string.enter_login)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, bottom = 16.dp),
@@ -80,8 +81,8 @@ fun Login(
             TextField(
                 value = enteredPasswordState.value,
                 onValueChange = { enteredPasswordState.value = it },
-                label = { Text(text = "Пароль") },
-                placeholder = { Text(text = "Введите пароль") },
+                label = { Text(text = stringResource(R.string.password)) },
+                placeholder = { Text(text = stringResource(R.string.enter_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, bottom = 16.dp),
@@ -100,19 +101,19 @@ fun Login(
                 viewModel.readUserData { userPreferences ->
                     if ( userPreferences != null && userPreferences.userName == enteredUserName &&
                         userPreferences.password == enteredPassword ) {
-                        navController.navigate(Routes.HOME)
+                        navController.navigate(Routes.HOME) {
+                            popUpTo(Routes.LOGIN) {
+                                inclusive = true
+                            }
+                        }
                     } else {
                         navController.navigate(Routes.REGISTRATION)
-                        Toast.makeText(
-                            context,
-                            "Такого аккаунта нет, регистрируйся",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        context.showToast(R.string.account_not_found_please_register)
                     }
                 }
 
             }) {
-                Text(text = "Вход")
+                Text(text = stringResource(R.string.enter))
             }
         }
     }

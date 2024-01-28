@@ -32,39 +32,36 @@ fun AppNavigation(
     navController: NavController,
     weatherState: CurrentWeatherCardModel?,
     padding: PaddingValues,
-){
+) {
     var selectedScreen by remember { mutableIntStateOf(0) }
 
     NavHost(
         navController = navController as NavHostController,
         startDestination = Routes.LOGIN
-    ){
+    ) {
 
-        composable(route = Routes.REGISTRATION ){ Registration(context, navController) }
+        composable(route = Routes.REGISTRATION) { Registration(context, navController) }
 
-        composable(route = Routes.LOGIN ){ Login(context, navController) }
+        composable(route = Routes.LOGIN) { Login(context, navController) }
 
-        composable(route = Routes.HOME){
+        composable(route = Routes.HOME) {
             HomeScreen(
                 modifier = modifier,
                 onNavigate = { navController.navigate(it.route) },
                 weatherState = weatherState,
-
             )
         }
 
-        composable(route = Routes.STATS ){ StatsScreen() }
+        composable(route = Routes.STATS ) { StatsScreen() }
 
-        composable(route = Routes.SETTINGS ){ SettingsScreen(padding) }
+        composable(route = Routes.SETTINGS ) { SettingsScreen(padding) }
 
-        composable(route = Routes.BOTTOM ){
+        composable(route = Routes.BOTTOM ) {
             BottomNavBar(
                 snackBarHostState,
                 navController,
                 selectedScreen,
-                {
-                    selectedScreen = it
-                },
+                { selectedScreen = it },
                 weatherState
             )
         }

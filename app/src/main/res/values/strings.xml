@@ -12,8 +12,24 @@
     <string name="condition_name">Названия состояния</string>
     <string name="enter_condition_name">Введите название состояние </string>
     <string name="factor_mood_deleted">Factor Mood deleted</string>
-    <string name="undo">Undo</string>
+    <string name="undo">Отменить</string>
     <string name="example">Пример</string>
     <string name="registration">Регистрация</string>
+    <string name="enter">Вход</string>
+    <string name="save">Сохранить</string>
+    <string name="add">Добавить</string>
     <string name="login">Логин</string>
+    <string name="enter_login">Введите логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="ok">ОК</string>
+    <string name="enter_registration_data">Введите логин и пароль</string>
+    <string name="permission_granted">Permission granted!</string>
+    <string name="permission_denied">Permission denied!</string>
+    <string name="account_not_found_please_register">Такого аккаунта нет, регистрируйся</string>
+    <string name="home">Главная</string>
+    <string name="statistics">Статистика</string>
+    <string name="settings">Настройки</string>
+    <string name="settings_screen">Экран настроек</string>
+    <string name="statistics_screen">Экран статистики"</string>
 </resources>

@@ -34,6 +34,7 @@ class NetworkService private constructor() {
 
         suspend fun <T> handleCall(call: Call<T>): T? = withContext(Dispatchers.Default) {
             return@withContext try {
+                Log.d("API", call.request().url.toString())
                 val response = call.execute()
                 if (response.isSuccessful) {
                     return@withContext response.body()

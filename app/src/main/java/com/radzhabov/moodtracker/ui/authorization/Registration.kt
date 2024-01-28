@@ -101,8 +101,8 @@ fun Registration(
                 if (newUserNameState.value.text.isNotEmpty() && newPasswordState.value.text.isNotEmpty()) {
                     CoroutineScope(Dispatchers.IO).launch {
                         viewModel.saveUserData(newUserNameState.value.text, newPasswordState.value.text)
-                        navController.navigate(Routes.LOGIN)
                     }
+                    navController.navigate(Routes.LOGIN)
                 } else {
                     Toast.makeText(
                         context,

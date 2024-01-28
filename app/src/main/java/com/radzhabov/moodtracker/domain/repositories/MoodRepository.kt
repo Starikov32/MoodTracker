@@ -10,6 +10,7 @@ interface MoodRepository {
     suspend fun deleteMood(mood: Mood)
 
     suspend fun getMoodById(id: Int): Mood?
+
     fun getMoods(): Flow<List<Mood>>
 
 }

@@ -1,7 +1,6 @@
 package com.radzhabov.moodtracker.ui.authorization
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -41,19 +40,14 @@ fun Registration(
     navController: NavController,
     viewModel: AuthorizationViewModel = hiltViewModel(),
 ) {
-    val userName by viewModel.userNameFlow.collectAsState("")
-    val userPassword by viewModel.userPasswordFlow.collectAsState("")
+    val newUserNameState = remember { mutableStateOf(TextFieldValue()) }
+    val newPasswordState = remember { mutableStateOf(TextFieldValue()) }
 
-    val newUserNameState = remember { mutableStateOf(TextFieldValue(userName)) }
-    val newPasswordState = remember { mutableStateOf(TextFieldValue(userPassword)) }
-
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-    ) {
+    Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp),
+                .padding(16.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -61,8 +55,15 @@ fun Registration(
                 modifier = Modifier.padding(top = 16.dp),
                 text = stringResource(R.string.registration)
             )
-            
+
             Spacer(modifier = Modifier.padding(16.dp))
+
+            val keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next,
+                keyboardType = KeyboardType.Text
+            )
+
+            val shape = RoundedCornerShape(16.dp)
 
             TextField(
                 value = newUserNameState.value,
@@ -71,15 +72,10 @@ fun Registration(
                 placeholder = { Text(text = stringResource(R.string.enter_login)) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, bottom = 16.dp),
-                shape = RoundedCornerShape(16.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Text
-                )
+                    .padding(bottom = 16.dp),
+                shape = shape,
+                keyboardOptions = keyboardOptions
             )
-
-            Spacer(modifier = Modifier.padding(16.dp))
 
             TextField(
                 value = newPasswordState.value,
@@ -88,26 +84,24 @@ fun Registration(
                 placeholder = { Text(text = stringResource(R.string.enter_password)) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 16.dp, bottom = 16.dp),
-                shape = RoundedCornerShape(16.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Text
-                )
+                    .padding(bottom = 16.dp),
+                shape = shape,
+                keyboardOptions = keyboardOptions
             )
 
-            Spacer(modifier = Modifier.padding(16.dp))
-
-            Button(onClick = {
-                if (newUserNameState.value.text.isNotEmpty() && newPasswordState.value.text.isNotEmpty()) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        viewModel.saveUserData(newUserNameState.value.text, newPasswordState.value.text)
+            Button(
+                onClick = {
+                    if (newUserNameState.value.text.isNotEmpty() && newPasswordState.value.text.isNotEmpty()) {
+                        CoroutineScope(Dispatchers.IO).launch {
+                            viewModel.saveUserData(newUserNameState.value.text, newPasswordState.value.text)
+                        }
+                        navController.navigate(Routes.LOGIN)
+                    } else {
+                        context.showToast(R.string.enter_registration_data)
                     }
-                    navController.navigate(Routes.LOGIN)
-                } else {
-                    context.showToast(R.string.enter_registration_data)
-                }
-            }) {
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text(text = stringResource(R.string.ok))
             }
         }

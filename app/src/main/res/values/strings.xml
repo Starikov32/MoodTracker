@@ -1,17 +1,12 @@
 <resources>
     <string name="app_name">MoodTracker</string>
-    <string name="weather_city">Кирово-Чепецк</string>
-    <string name="eat">Еда</string>
-    <string name="sleep">Сон</string>
-    <string name="health">Здоровье</string>
-    <string name="music">Музыка</string>
+
     <string name="condition_rating">Оцените состояние от 1 до 3</string>
     <string name="enter_condition">Введите состояние</string>
     <string name="criteria_editing">Редактирование критериев</string>
-
     <string name="condition_name">Названия состояния</string>
     <string name="enter_condition_name">Введите название состояние </string>
-    <string name="factor_mood_deleted">Factor Mood deleted</string>
+    <string name="factor_mood_deleted">Фактор настроение удален</string>
     <string name="undo">Отменить</string>
     <string name="example">Пример</string>
     <string name="registration">Регистрация</string>
@@ -24,9 +19,10 @@
     <string name="enter_password">Введите пароль</string>
     <string name="ok">ОК</string>
     <string name="enter_registration_data">Введите логин и пароль</string>
-    <string name="permission_granted">Permission granted!</string>
-    <string name="permission_denied">Permission denied!</string>
+    <string name="permission_granted">Разрешение получено!</string>
+    <string name="permission_denied">Доступ запрещен!</string>
     <string name="account_not_found_please_register">Такого аккаунта нет, регистрируйся</string>
+    <string name="correct_screen">Вы в правильном экране</string>
     <string name="home">Главная</string>
     <string name="statistics">Статистика</string>
     <string name="settings">Настройки</string>

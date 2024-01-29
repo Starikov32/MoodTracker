@@ -1,7 +1,6 @@
 package com.radzhabov.moodtracker.ui.authorization
 
 import android.content.Context
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -31,6 +30,7 @@ import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.domain.util.Routes
 import com.radzhabov.moodtracker.ui.utils.showToast
+
 
 @Composable
 fun Login(
@@ -101,7 +101,8 @@ fun Login(
                 viewModel.readUserData { userPreferences ->
                     if ( userPreferences != null && userPreferences.userName == enteredUserName &&
                         userPreferences.password == enteredPassword ) {
-                        navController.navigate(Routes.HOME) {
+                        viewModel.isLoggedIn = true
+                        navController.navigate(Routes.BOTTOM) {
                             popUpTo(Routes.LOGIN) {
                                 inclusive = true
                             }

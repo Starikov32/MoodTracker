@@ -81,7 +81,7 @@ fun MoodEdit(
                 text = stringResource(R.string.criteria_editing),
             )
 
-            OutlinedTextField(
+            CustomOutlinedTextField(
                 value = viewModel.name,
                 onValueChange = { viewModel.onEvent(MoodEditEvent.OnNameChange(it)) },
                 label = { Text(text = stringResource(R.string.condition_name)) },
@@ -89,14 +89,10 @@ fun MoodEdit(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, bottom = 13.dp),
-                shape = RoundedCornerShape(16.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Text
-                )
+                keyboardOptions = KeyboardType.Text
             )
 
-            OutlinedTextField(
+            CustomOutlinedTextField(
                 value = viewModel.stateNumber,
                 onValueChange = { viewModel.onEvent(MoodEditEvent.OnStateNumberChange(it)) },
                 label = { Text(text = stringResource(R.string.condition_rating)) },
@@ -104,11 +100,7 @@ fun MoodEdit(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(start = 16.dp, bottom = 13.dp),
-                shape = RoundedCornerShape(16.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Number
-                )
+                keyboardOptions = KeyboardType.Number
             )
         }
 

@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.radzhabov.moodtracker.main.data.db.entities.Mood
+import com.radzhabov.moodtracker.main.data.entities.Mood
 import com.radzhabov.moodtracker.home.domain.repositories.MoodRepository
 import com.radzhabov.moodtracker.home.domain.util.UiEvent
 import com.radzhabov.moodtracker.home.ui.edit.MoodEditEvent

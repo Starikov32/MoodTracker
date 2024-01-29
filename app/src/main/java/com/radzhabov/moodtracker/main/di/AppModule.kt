@@ -11,8 +11,8 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.radzhabov.moodtracker.authorization.data.UserPreferencesRepository
-import com.radzhabov.moodtracker.main.data.db.AppDatabase
-import com.radzhabov.moodtracker.main.data.db.dao.MoodDao
+import com.radzhabov.moodtracker.main.data.AppDatabase
+import com.radzhabov.moodtracker.main.data.dao.MoodDao
 import com.radzhabov.moodtracker.home.data.network.api.WeatherApi
 import com.radzhabov.moodtracker.home.data.network.service.NetworkService
 import com.radzhabov.moodtracker.home.data.repositories.MoodRepositoryImpl

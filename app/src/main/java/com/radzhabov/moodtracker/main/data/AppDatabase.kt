@@ -1,11 +1,11 @@
-package com.radzhabov.moodtracker.main.data.db
+package com.radzhabov.moodtracker.main.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.radzhabov.moodtracker.main.data.db.dao.MoodDao
-import com.radzhabov.moodtracker.main.data.db.entities.Mood
+import com.radzhabov.moodtracker.main.data.dao.MoodDao
+import com.radzhabov.moodtracker.main.data.entities.Mood
 
 @Database(
     version = 1,

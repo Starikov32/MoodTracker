@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.main.ui.settings
+package com.radzhabov.moodtracker.settings.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.radzhabov.moodtracker.R
 
 @Composable
-fun SettingsScreen(
+fun settingsScreen(
     innerPadding: PaddingValues
 ) {
     Box(

@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.main.ui.stats
+package com.radzhabov.moodtracker.stats.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 import com.radzhabov.moodtracker.R
 
 @Composable
-fun StatsScreen() {
+fun statsScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.main.domain.model
+package com.radzhabov.moodtracker.main.domain
 
 import androidx.compose.ui.graphics.painter.Painter
 

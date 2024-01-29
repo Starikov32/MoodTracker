@@ -25,7 +25,7 @@ import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.home.domain.model.CurrentWeatherCardModel
 
 @Composable
-fun WeatherCard(
+fun weatherCard(
     weatherState: CurrentWeatherCardModel?,
     modifier: Modifier = Modifier,
 ) {

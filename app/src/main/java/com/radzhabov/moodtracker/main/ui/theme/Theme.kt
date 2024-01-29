@@ -38,7 +38,7 @@ private val lightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun MoodTrackerTheme(
+fun moodTrackerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

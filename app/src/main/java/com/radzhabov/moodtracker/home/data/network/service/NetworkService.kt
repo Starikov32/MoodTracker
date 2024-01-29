@@ -5,8 +5,10 @@ import com.radzhabov.moodtracker.home.data.network.api.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
 import java.lang.Exception
 
 
@@ -41,8 +43,16 @@ class NetworkService private constructor() {
                 } else {
                     throw IllegalArgumentException(EXCEPTION)
                 }
-            } catch (exception: Exception) {
-                val message = "Error executing the request: ${exception.localizedMessage}"
+            } catch (e: IOException) {
+                val message = "Network error: ${e.localizedMessage}"
+                Log.e(LOG_TAG, message)
+                null
+            } catch (e: HttpException) {
+                val message = "HTTP error: ${e.localizedMessage}"
+                Log.e(LOG_TAG, message)
+                null
+            } catch (e: IllegalArgumentException) {
+                val message = "Invalid response: ${e.localizedMessage}"
                 Log.e(LOG_TAG, message)
                 null
             }

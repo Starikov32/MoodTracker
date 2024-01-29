@@ -1,6 +1,6 @@
 package com.radzhabov.moodtracker.home.ui
 
-import com.radzhabov.moodtracker.main.data.db.entities.Mood
+import com.radzhabov.moodtracker.main.data.entities.Mood
 
 sealed class MoodListEvent {
     object OnAddMoodClick : MoodListEvent()

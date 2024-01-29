@@ -1,6 +1,6 @@
 package com.radzhabov.moodtracker.home.domain.repositories
 
-import com.radzhabov.moodtracker.main.data.db.entities.Mood
+import com.radzhabov.moodtracker.main.data.entities.Mood
 import kotlinx.coroutines.flow.Flow
 
 interface MoodRepository {

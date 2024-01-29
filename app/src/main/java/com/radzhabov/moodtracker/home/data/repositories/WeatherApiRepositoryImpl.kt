@@ -6,9 +6,9 @@ import com.radzhabov.moodtracker.home.data.network.api.response.WeatherResponse
 import com.radzhabov.moodtracker.home.data.network.service.NetworkService.Companion.handleCall
 import com.radzhabov.moodtracker.home.domain.model.CurrentWeatherCardModel
 import com.radzhabov.moodtracker.home.domain.repositories.WeatherApiRepository
-import com.radzhabov.moodtracker.home.domain.util.Constants.Companion.ALERTS
-import com.radzhabov.moodtracker.home.domain.util.Constants.Companion.API_KEY
-import com.radzhabov.moodtracker.home.domain.util.Constants.Companion.AQI
+import com.radzhabov.moodtracker.home.domain.util.Constants.ALERTS
+import com.radzhabov.moodtracker.home.domain.util.Constants.API_KEY
+import com.radzhabov.moodtracker.home.domain.util.Constants.AQI
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

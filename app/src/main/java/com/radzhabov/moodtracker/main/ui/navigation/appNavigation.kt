@@ -22,16 +22,16 @@ import androidx.navigation.navArgument
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.home.domain.model.CurrentWeatherCardModel
 import com.radzhabov.moodtracker.home.domain.util.Routes
-import com.radzhabov.moodtracker.authorization.ui.Login
-import com.radzhabov.moodtracker.authorization.ui.Registration
-import com.radzhabov.moodtracker.home.ui.HomeScreen
-import com.radzhabov.moodtracker.main.ui.settings.SettingsScreen
-import com.radzhabov.moodtracker.main.ui.stats.StatsScreen
-import com.radzhabov.moodtracker.home.ui.edit.MoodEdit
+import com.radzhabov.moodtracker.authorization.ui.login.login
+import com.radzhabov.moodtracker.authorization.ui.registration.registration
+import com.radzhabov.moodtracker.home.ui.homeScreen
+import com.radzhabov.moodtracker.settings.ui.settingsScreen
+import com.radzhabov.moodtracker.stats.ui.statsScreen
+import com.radzhabov.moodtracker.home.ui.edit.moodEdit
 import com.radzhabov.moodtracker.main.ui.utils.showToast
 
 @Composable
-fun AppNavigation(
+fun appNavigation(
     modifier: Modifier,
     snackBarHostState: SnackbarHostState,
     navController: NavController,
@@ -43,7 +43,7 @@ fun AppNavigation(
     val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
     backDispatcher?.let {
-        BackHandler(it) {
+        backHandler(it) {
             if (navController.currentBackStackEntry?.destination?.route == Routes.BOTTOM) {
                 context.showToast(R.string.correct_screen)
             } else {
@@ -57,24 +57,24 @@ fun AppNavigation(
         startDestination = Routes.LOGIN
     ) {
 
-        composable(route = Routes.REGISTRATION) { Registration(context, navController) }
+        composable(route = Routes.REGISTRATION) { registration(context, navController) }
 
-        composable(route = Routes.LOGIN) { Login(context, navController) }
+        composable(route = Routes.LOGIN) { login(context, navController) }
 
         composable(route = Routes.HOME) {
-            HomeScreen(
+            homeScreen(
                 modifier = modifier,
                 onNavigate = { navController.navigate(it.route) },
                 weatherState = weatherState,
             )
         }
 
-        composable(route = Routes.STATS ) { StatsScreen() }
+        composable(route = Routes.STATS ) { statsScreen() }
 
-        composable(route = Routes.SETTINGS ) { SettingsScreen(padding) }
+        composable(route = Routes.SETTINGS ) { settingsScreen(padding) }
 
         composable(route = Routes.BOTTOM ) {
-            BottomNavBar(
+            bottomNavBar(
                 snackBarHostState,
                 navController,
                 selectedScreen,
@@ -92,7 +92,7 @@ fun AppNavigation(
                 }
             )
         ) {
-            MoodEdit(
+            moodEdit(
                 onPopBackStack = { navController.popBackStack() },
             )
         }
@@ -101,7 +101,7 @@ fun AppNavigation(
 }
 
 @Composable
-fun BackHandler(
+fun backHandler(
     dispatcher: OnBackPressedDispatcher,
     onBackEvent: () -> Unit
 ) {

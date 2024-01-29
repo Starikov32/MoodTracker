@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.main.data.db.entities
+package com.radzhabov.moodtracker.main.data.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

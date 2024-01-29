@@ -1,11 +1,11 @@
-package com.radzhabov.moodtracker.main.data.db.dao
+package com.radzhabov.moodtracker.main.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.radzhabov.moodtracker.main.data.db.entities.Mood
+import com.radzhabov.moodtracker.main.data.entities.Mood
 import kotlinx.coroutines.flow.Flow
 
 @Dao

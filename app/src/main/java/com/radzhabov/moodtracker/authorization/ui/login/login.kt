@@ -1,18 +1,13 @@
-package com.radzhabov.moodtracker.authorization.ui
+package com.radzhabov.moodtracker.authorization.ui.login
 
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,20 +16,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.authorization.ui.viewmodel.AuthorizationViewModel
-import com.radzhabov.moodtracker.home.domain.util.Routes
-import com.radzhabov.moodtracker.main.ui.utils.showToast
 
 
 @Composable
-fun Login(
+fun login(
     context: Context,
     navController: NavController,
     viewModel: AuthorizationViewModel = hiltViewModel(),
@@ -62,61 +53,31 @@ fun Login(
             
             Spacer(modifier = Modifier.padding(16.dp))
 
-            TextField(
+            loginTextField(
                 value = enteredUserNameState.value,
                 onValueChange = { enteredUserNameState.value = it },
                 label = { Text(text = stringResource(R.string.login)) },
                 placeholder = { Text(text = stringResource(R.string.enter_login)) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, bottom = 16.dp),
-                shape = RoundedCornerShape(16.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Text
-                )
             )
 
             Spacer(modifier = Modifier.padding(16.dp))
 
-            TextField(
+            loginTextField(
                 value = enteredPasswordState.value,
                 onValueChange = { enteredPasswordState.value = it },
                 label = { Text(text = stringResource(R.string.password)) },
                 placeholder = { Text(text = stringResource(R.string.enter_password)) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, bottom = 16.dp),
-                shape = RoundedCornerShape(16.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next,
-                    keyboardType = KeyboardType.Text
-                )
             )
 
             Spacer(modifier = Modifier.padding(16.dp))
 
-            Button(onClick = {
-                val enteredUserName = enteredUserNameState.value.text
-                val enteredPassword = enteredPasswordState.value.text
-                viewModel.readUserData { userPreferences ->
-                    if ( userPreferences != null && userPreferences.userName == enteredUserName &&
-                        userPreferences.password == enteredPassword ) {
-                        viewModel.isLoggedIn = true
-                        navController.navigate(Routes.BOTTOM) {
-                            popUpTo(Routes.LOGIN) {
-                                inclusive = true
-                            }
-                        }
-                    } else {
-                        navController.navigate(Routes.REGISTRATION)
-                        context.showToast(R.string.account_not_found_please_register)
-                    }
-                }
-
-            }) {
-                Text(text = stringResource(R.string.enter))
-            }
+            loginButton(
+                context = context,
+                enteredUserNameState = enteredUserNameState.value,
+                enteredPasswordState = enteredPasswordState.value,
+                viewModel = viewModel,
+                navController = navController
+            )
         }
     }
 }

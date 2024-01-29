@@ -18,7 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
-import com.radzhabov.moodtracker.main.data.db.entities.Mood
+import com.radzhabov.moodtracker.main.data.entities.Mood
 import com.radzhabov.moodtracker.home.ui.MoodListEvent
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import com.radzhabov.moodtracker.R
 
 @Composable
-fun MoodItem(
+fun moodItem(
     mood: Mood,
     onEvent: (MoodListEvent) -> Unit,
     modifier: Modifier = Modifier,
@@ -85,21 +85,4 @@ fun MoodItem(
             }
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun MoodItemPreview() {
-    val mood = Mood(
-        id = 1,
-        name = stringResource(R.string.example),
-        stateNumber = "1",
-    )
-
-    MoodItem(
-        mood = mood,
-        onEvent = {},
-        modifier = Modifier.fillMaxWidth()
-    )
 }

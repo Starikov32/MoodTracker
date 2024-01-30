@@ -13,7 +13,7 @@ import com.radzhabov.moodtracker.home.domain.util.Routes
 import com.radzhabov.moodtracker.main.ui.utils.showToast
 
 @Composable
-fun loginButton(
+fun LoginButton(
     context: Context,
     enteredUserNameState: TextFieldValue,
     enteredPasswordState: TextFieldValue,

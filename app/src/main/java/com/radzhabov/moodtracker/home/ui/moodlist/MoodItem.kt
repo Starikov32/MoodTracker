@@ -21,14 +21,11 @@ import androidx.compose.ui.unit.dp
 import com.radzhabov.moodtracker.main.data.entities.Mood
 import com.radzhabov.moodtracker.home.ui.MoodListEvent
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
-import com.radzhabov.moodtracker.R
 
 @Composable
-fun moodItem(
+fun MoodItem(
     mood: Mood,
     onEvent: (MoodListEvent) -> Unit,
     modifier: Modifier = Modifier,

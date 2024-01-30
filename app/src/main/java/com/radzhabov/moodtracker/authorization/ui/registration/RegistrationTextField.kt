@@ -13,7 +13,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun registrationTextField(
+fun RegistrationTextField(
     value: TextFieldValue,
     onValueChange: (TextFieldValue) -> Unit,
     label: @Composable (() -> Unit),

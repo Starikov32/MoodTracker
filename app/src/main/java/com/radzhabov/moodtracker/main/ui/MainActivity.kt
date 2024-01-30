@@ -21,8 +21,8 @@ import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.home.domain.util.Routes
 import com.radzhabov.moodtracker.authorization.ui.viewmodel.AuthorizationViewModel
 import com.radzhabov.moodtracker.main.ui.location.LocationManager
-import com.radzhabov.moodtracker.main.ui.navigation.appNavigation
-import com.radzhabov.moodtracker.main.ui.theme.moodTrackerTheme
+import com.radzhabov.moodtracker.main.ui.navigation.AppNavigation
+import com.radzhabov.moodtracker.main.ui.theme.MoodTrackerTheme
 import com.radzhabov.moodtracker.main.ui.utils.showToast
 import com.radzhabov.moodtracker.home.ui.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,13 +44,13 @@ class MainActivity : ComponentActivity() {
         checkPermission()
 
         setContent {
-            moodTrackerTheme {
+            MoodTrackerTheme {
                 val snackBarHostState: SnackbarHostState = remember { SnackbarHostState() }
                 navController = rememberNavController()
                 val modifier = Modifier
                 val weatherState by weatherViewModel.currentWeatherState.collectAsState()
 
-                appNavigation(
+                AppNavigation(
                     modifier,
                     snackBarHostState,
                     navController,

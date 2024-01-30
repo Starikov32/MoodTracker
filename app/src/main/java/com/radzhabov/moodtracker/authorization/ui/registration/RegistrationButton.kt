@@ -18,7 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
-fun registrationButton(
+fun RegistrationButton(
     context: Context,
     newUserNameState: TextFieldValue,
     newPasswordState: TextFieldValue,

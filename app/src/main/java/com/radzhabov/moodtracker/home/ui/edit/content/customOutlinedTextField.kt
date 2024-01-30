@@ -26,7 +26,7 @@ fun customOutlinedTextField(
         placeholder = placeholder,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, bottom = 13.dp),
+            .padding(16.dp),
         shape = RoundedCornerShape(16.dp),
         keyboardOptions = KeyboardOptions(
             imeAction = ImeAction.Next,

@@ -32,5 +32,4 @@ fun moodEdit(
     }
     
     moodEditScaffold(viewModel = viewModel)
-
 }

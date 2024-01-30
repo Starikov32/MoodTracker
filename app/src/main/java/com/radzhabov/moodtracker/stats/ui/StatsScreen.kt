@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 import com.radzhabov.moodtracker.R
 
 @Composable
-fun statsScreen() {
+fun StatsScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

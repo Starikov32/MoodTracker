@@ -1,4 +1,4 @@
-package com.radzhabov.moodtracker.authorization.ui.login
+package com.radzhabov.moodtracker.authorization.ui.registration
 
 import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -23,58 +21,48 @@ import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.authorization.ui.viewmodel.AuthorizationViewModel
 
-
 @Composable
-fun login(
+fun Registration(
     context: Context,
     navController: NavController,
     viewModel: AuthorizationViewModel = hiltViewModel(),
 ) {
-    val userName by viewModel.userNameFlow.collectAsState("")
-    val userPassword by viewModel.userPasswordFlow.collectAsState("")
+    val newUserNameState = remember { mutableStateOf(TextFieldValue()) }
+    val newPasswordState = remember { mutableStateOf(TextFieldValue()) }
 
-    val enteredUserNameState = remember { mutableStateOf(TextFieldValue(userName)) }
-    val enteredPasswordState = remember { mutableStateOf(TextFieldValue(userPassword)) }
-
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-    ) {
+    Surface(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 16.dp),
+                .padding(16.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 modifier = Modifier.padding(top = 16.dp),
-                text = stringResource(R.string.login)
+                text = stringResource(R.string.registration)
             )
-            
+
             Spacer(modifier = Modifier.padding(16.dp))
 
-            loginTextField(
-                value = enteredUserNameState.value,
-                onValueChange = { enteredUserNameState.value = it },
+            RegistrationTextField(
+                value = newUserNameState.value,
+                onValueChange = { newUserNameState.value = it },
                 label = { Text(text = stringResource(R.string.login)) },
                 placeholder = { Text(text = stringResource(R.string.enter_login)) },
             )
 
-            Spacer(modifier = Modifier.padding(16.dp))
-
-            loginTextField(
-                value = enteredPasswordState.value,
-                onValueChange = { enteredPasswordState.value = it },
+            RegistrationTextField(
+                value = newPasswordState.value,
+                onValueChange = { newPasswordState.value = it },
                 label = { Text(text = stringResource(R.string.password)) },
                 placeholder = { Text(text = stringResource(R.string.enter_password)) },
             )
 
-            Spacer(modifier = Modifier.padding(16.dp))
-
-            loginButton(
+            RegistrationButton(
                 context = context,
-                enteredUserNameState = enteredUserNameState.value,
-                enteredPasswordState = enteredPasswordState.value,
+                newUserNameState = newUserNameState.value,
+                newPasswordState = newPasswordState.value,
                 viewModel = viewModel,
                 navController = navController
             )

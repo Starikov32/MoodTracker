@@ -26,12 +26,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.home.domain.model.CurrentWeatherCardModel
 import com.radzhabov.moodtracker.home.domain.util.UiEvent
-import com.radzhabov.moodtracker.home.ui.moodlist.moodItem
-import com.radzhabov.moodtracker.home.ui.weather.weatherCard
+import com.radzhabov.moodtracker.home.ui.moodlist.MoodItem
+import com.radzhabov.moodtracker.home.ui.weather.WeatherCard
 import com.radzhabov.moodtracker.home.ui.viewmodel.MoodListViewModel
 
 @Composable
-fun homeScreen(
+fun HomeScreen(
     modifier: Modifier,
     onNavigate: (UiEvent.Navigate) -> Unit,
     viewModel: MoodListViewModel = hiltViewModel(),
@@ -73,7 +73,7 @@ fun homeScreen(
         }
     ) { innerPadding ->
         Column {
-            weatherCard(weatherState)
+            WeatherCard(weatherState)
 
             Spacer(modifier = Modifier.padding(5.dp))
 
@@ -83,7 +83,7 @@ fun homeScreen(
                     .padding(innerPadding)
             ) {
                 items(moods.value) {mood ->
-                    moodItem(
+                    MoodItem(
                         mood = mood,
                         onEvent = viewModel::onEvent,
                         modifier = Modifier

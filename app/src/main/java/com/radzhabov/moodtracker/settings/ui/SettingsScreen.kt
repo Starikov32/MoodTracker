@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import com.radzhabov.moodtracker.R
 
 @Composable
-fun settingsScreen(
+fun SettingsScreen(
     innerPadding: PaddingValues
 ) {
     Box(

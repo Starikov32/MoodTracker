@@ -27,7 +27,7 @@ import com.radzhabov.moodtracker.home.ui.edit.MoodEditEvent
 import com.radzhabov.moodtracker.home.ui.viewmodel.MoodEditViewModel
 
 @Composable
-fun moodEditScaffold(
+fun MoodEditScaffold(
     viewModel: MoodEditViewModel
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
@@ -61,7 +61,7 @@ fun moodEditScaffold(
                     text = stringResource(R.string.criteria_editing),
                 )
 
-                customOutlinedTextField(
+                CustomOutlinedTextField(
                     value = viewModel.name,
                     onValueChange = { viewModel.onEvent(MoodEditEvent.OnNameChange(it)) },
                     label = { Text(text = stringResource(R.string.condition_name)) },
@@ -69,7 +69,7 @@ fun moodEditScaffold(
                     keyboardOptions = KeyboardType.Text
                 )
 
-                customOutlinedTextField(
+                CustomOutlinedTextField(
                     value = viewModel.stateNumber,
                     onValueChange = { viewModel.onEvent(MoodEditEvent.OnStateNumberChange(it)) },
                     label = { Text(text = stringResource(R.string.condition_rating)) },

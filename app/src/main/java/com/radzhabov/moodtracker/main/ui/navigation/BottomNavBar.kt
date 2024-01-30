@@ -21,12 +21,12 @@ import androidx.navigation.NavController
 import com.radzhabov.moodtracker.R
 import com.radzhabov.moodtracker.home.domain.model.CurrentWeatherCardModel
 import com.radzhabov.moodtracker.main.domain.Screen
-import com.radzhabov.moodtracker.home.ui.homeScreen
-import com.radzhabov.moodtracker.settings.ui.settingsScreen
-import com.radzhabov.moodtracker.stats.ui.statsScreen
+import com.radzhabov.moodtracker.home.ui.HomeScreen
+import com.radzhabov.moodtracker.settings.ui.SettingsScreen
+import com.radzhabov.moodtracker.stats.ui.StatsScreen
 
 @Composable
-fun bottomNavBar(
+fun BottomNavBar(
     snackBarHostState: SnackbarHostState,
     navController: NavController,
     selectedScreen: Int,
@@ -64,13 +64,13 @@ fun bottomNavBar(
     ) { innerPadding ->
         val modifier = Modifier.padding(innerPadding)
         when (selectedScreen) {
-            0 -> homeScreen(
+            0 -> HomeScreen(
                 modifier,
                 { navController.navigate(it.route) },
                 weatherState = weatherState
             )
-            1 -> statsScreen()
-            2 -> settingsScreen(innerPadding)
+            1 -> StatsScreen()
+            2 -> SettingsScreen(innerPadding)
         }
     }
 }
